@@ -23,134 +23,277 @@
     background: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.65;
     overflow-x: hidden;
   }
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
     background-size: 40px 40px;
     pointer-events: none;
     z-index: 0;
   }
+
+  /* NAV */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
+    position: fixed; top: 0; left: 0; right: 0;
     z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 52px;
     background: var(--paper);
     border-bottom: 1px solid rgba(15,14,12,0.12);
   }
-  .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em; color: var(--ink); text-decoration: none; }
+  .nav-logo { font-family: var(--mono); font-size: 14px; letter-spacing: 0.05em; color: var(--ink); text-decoration: none; }
   .nav-logo span { color: var(--rust); }
   .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
+  .nav-links a { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
   .nav-links a:hover { opacity: 1; }
 
-  .hero {
-    position: relative; z-index: 1;
-    min-height: 100vh;
-    display: flex; align-items: flex-end;
-    padding: 120px 48px 80px;
-  }
-  .hero-inner { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; }
-  .hero-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+  /* HERO */
+  .hero { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; padding: 88px 52px 60px; }
+  .hero-inner { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .hero-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 26px; display: flex; align-items: center; gap: 12px; }
   .hero-label::before { content: ''; width: 32px; height: 1px; background: var(--rust); }
-  h1 { font-family: var(--serif); font-size: clamp(48px, 6.5vw, 88px); line-height: 1.0; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 28px; }
+  h1 { font-family: var(--serif); font-size: clamp(52px, 7vw, 96px); line-height: 1.0; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 28px; }
   h1 em { font-style: italic; color: var(--rust); }
-  .hero-desc { font-size: 17px; line-height: 1.7; color: rgba(15,14,12,0.65); max-width: 420px; margin-bottom: 32px; }
-  .hero-contact-row { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 36px; }
-  .hero-contact-item { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12px; color: rgba(15,14,12,0.58); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .hero-desc { font-size: 19px; line-height: 1.72; color: rgba(15,14,12,0.65); max-width: 440px; margin-bottom: 32px; }
+  .hero-contact-row { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 38px; }
+  .hero-contact-item { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 13px; color: rgba(15,14,12,0.58); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
   .hero-contact-item:hover { color: var(--rust); }
-  .hero-contact-item .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--rust); opacity: 0.5; }
-  .hero-cta { display: inline-flex; align-items: center; gap: 12px; padding: 14px 28px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .hero-contact-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rust); opacity: 0.5; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
   .hero-cta:hover { background: var(--rust); }
   .hero-cta-arrow { transition: transform 0.2s; }
   .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
-  .hero-right { display: flex; flex-direction: column; align-items: flex-end; gap: 28px; }
-  .hero-blueprint { width: 100%; max-width: 440px; aspect-ratio: 4/3; background: var(--blueprint); overflow: hidden; }
+  .hero-right { display: flex; flex-direction: column; align-items: flex-end; gap: 28px; justify-content: center; }
+  .hero-blueprint { width: 100%; max-width: 460px; aspect-ratio: 4/3; background: var(--blueprint); overflow: hidden; }
   .hero-blueprint svg { width: 100%; height: 100%; }
-  .hero-stats { display: flex; gap: 40px; width: 100%; max-width: 440px; }
-  .stat { display: flex; flex-direction: column; gap: 4px; }
-  .stat-num { font-family: var(--serif); font-size: 36px; line-height: 1; color: var(--ink); }
-  .stat-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(15,14,12,0.5); }
+  .hero-stats { display: flex; gap: 44px; width: 100%; max-width: 460px; }
+  .stat { display: flex; flex-direction: column; gap: 5px; }
+  .stat-num { font-family: var(--serif); font-size: 40px; line-height: 1; color: var(--ink); }
+  .stat-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(15,14,12,0.5); }
 
-  section { position: relative; z-index: 1; padding: 100px 48px; }
-  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 64px; }
-  .section-num { font-family: var(--mono); font-size: 11px; color: var(--rust); letter-spacing: 0.1em; }
-  h2 { font-family: var(--serif); font-size: clamp(32px, 4vw, 52px); line-height: 1.1; color: var(--ink); }
+  /* SECTION BASE */
+  section { position: relative; z-index: 1; padding: 108px 52px; }
+  .section-header { display: flex; align-items: center; gap: 18px; margin-bottom: 68px; }
+  .section-num { font-family: var(--mono); font-size: 12px; color: var(--rust); letter-spacing: 0.1em; }
+  h2 { font-family: var(--serif); font-size: clamp(36px, 4.5vw, 58px); line-height: 1.1; color: var(--ink); }
   .divider { flex: 1; height: 1px; background: rgba(15,14,12,0.12); }
 
-  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .project-card { background: var(--paper); border: 1px solid rgba(15,14,12,0.1); padding: 36px 32px; position: relative; transition: transform 0.25s, border-color 0.25s; }
-  .project-card:hover { transform: translateY(-4px); border-color: var(--rust); z-index: 2; }
-  .project-card.featured { grid-column: span 2; background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .project-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); margin-bottom: 18px; display: block; }
-  .project-card.featured .project-tag { color: rgba(245,242,235,0.4); }
-  .project-num { position: absolute; top: 28px; right: 28px; font-family: var(--serif); font-size: 48px; color: rgba(15,14,12,0.05); line-height: 1; }
-  .project-card.featured .project-num { color: rgba(245,242,235,0.06); }
-  h3 { font-family: var(--serif); font-size: 24px; line-height: 1.2; margin-bottom: 12px; color: var(--ink); }
-  .project-card.featured h3 { font-size: 32px; color: var(--paper); }
-  .project-desc { font-size: 14px; line-height: 1.7; color: rgba(15,14,12,0.6); margin-bottom: 20px; }
-  .project-card.featured .project-desc { color: rgba(245,242,235,0.62); max-width: 500px; }
-  .project-highlights { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
-  .project-highlight { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--rust); display: flex; align-items: center; gap: 8px; }
-  .project-card.featured .project-highlight { color: #e8896e; }
-  .project-highlight::before { content: '↗'; font-size: 10px; }
-  .project-pills { display: flex; flex-wrap: wrap; gap: 7px; }
-  .pill { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border: 1px solid rgba(15,14,12,0.18); color: rgba(15,14,12,0.58); }
-  .project-card.featured .pill { border-color: rgba(245,242,235,0.2); color: rgba(245,242,235,0.62); }
+  /* ── SLIDESHOW ── */
+  .slideshow {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: rgba(15,14,12,0.04);
+    border-bottom: 1px solid rgba(15,14,12,0.08);
+  }
+  .slideshow-track {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+  }
+  .slideshow-track img {
+    flex-shrink: 0;
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+  }
+  /* Placeholder shown when no images are provided */
+  .slideshow-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15,14,12,0.03);
+    border-bottom: 1px solid rgba(15,14,12,0.08);
+    gap: 10px;
+  }
+  .slideshow-placeholder svg { opacity: 0.18; }
+  .slideshow-placeholder span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(15,14,12,0.3); }
+  /* Dark card placeholder */
+  .project-card.dark .slideshow-placeholder { background: rgba(245,242,235,0.04); border-bottom-color: rgba(245,242,235,0.08); }
+  .project-card.dark .slideshow-placeholder svg { opacity: 0.12; filter: invert(1); }
+  .project-card.dark .slideshow-placeholder span { color: rgba(245,242,235,0.3); }
 
+  .slideshow-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(15,14,12,0.55); color: #fff; border: none;
+    width: 32px; height: 32px;
+    font-size: 16px; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    z-index: 2;
+  }
+  .slideshow-btn:hover { background: var(--rust); }
+  .slideshow-btn.prev { left: 10px; }
+  .slideshow-btn.next { right: 10px; }
+  .slideshow-dots {
+    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 5px; z-index: 2;
+  }
+  .slideshow-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.5); border: none; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .slideshow-dot.active { background: #fff; }
+  /* Hidden slideshows (single image or no images — no controls needed) */
+  .slideshow-single .slideshow-btn,
+  .slideshow-single .slideshow-dots { display: none; }
+
+  /* ── PROJECTS ── */
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+  .project-card {
+    background: var(--paper);
+    border: 1px solid rgba(15,14,12,0.1);
+    position: relative;
+    transition: transform 0.25s, border-color 0.25s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { transform: translateY(-4px); border-color: var(--rust); z-index: 2; }
+  .project-card.dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .project-body { padding: 36px 36px 40px; flex: 1; display: flex; flex-direction: column; }
+  .project-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); margin-bottom: 16px; display: block; }
+  .project-card.dark .project-tag { color: rgba(245,242,235,0.4); }
+  .project-num { position: absolute; top: 28px; right: 28px; font-family: var(--serif); font-size: 52px; color: rgba(15,14,12,0.04); line-height: 1; pointer-events: none; }
+  .project-card.dark .project-num { color: rgba(245,242,235,0.05); }
+  h3 { font-family: var(--serif); font-size: 28px; line-height: 1.2; margin-bottom: 14px; color: var(--ink); }
+  .project-card.dark h3 { color: var(--paper); }
+  .project-desc { font-size: 16px; line-height: 1.72; color: rgba(15,14,12,0.62); margin-bottom: 22px; flex: 1; }
+  .project-card.dark .project-desc { color: rgba(245,242,235,0.62); }
+  .project-highlights { display: flex; flex-direction: column; gap: 7px; margin-bottom: 22px; }
+  .project-highlight { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--rust); display: flex; align-items: flex-start; gap: 8px; }
+  .project-card.dark .project-highlight { color: #e8896e; }
+  .project-highlight::before { content: '↗'; font-size: 11px; margin-top: 1px; flex-shrink: 0; }
+  .project-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 4px; }
+  .pill { font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; padding: 5px 11px; border: 1px solid rgba(15,14,12,0.18); color: rgba(15,14,12,0.58); }
+  .project-card.dark .pill { border-color: rgba(245,242,235,0.2); color: rgba(245,242,235,0.62); }
+
+  /* ── ABOUT ── */
   #about { background: var(--ink); color: var(--paper); }
   #about h2 { color: var(--paper); }
   #about .section-num { color: rgba(245,242,235,0.35); }
   #about .divider { background: rgba(245,242,235,0.12); }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .about-text { font-size: 18px; line-height: 1.75; color: rgba(245,242,235,0.72); }
+  .about-text { font-size: 19px; line-height: 1.78; color: rgba(245,242,235,0.72); }
   .about-text strong { color: var(--paper); font-weight: 500; }
   .coursework-row { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px; }
-  .course-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; padding: 5px 10px; border: 1px solid rgba(245,242,235,0.15); color: rgba(245,242,235,0.5); text-transform: uppercase; }
-  .skills-section { display: flex; flex-direction: column; gap: 28px; }
-  .skill-group-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rust); margin-bottom: 12px; }
-  .skill-list-inline { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-chip { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; padding: 6px 12px; background: rgba(245,242,235,0.07); border: 1px solid rgba(245,242,235,0.12); color: rgba(245,242,235,0.8); }
+  .course-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; padding: 6px 11px; border: 1px solid rgba(245,242,235,0.15); color: rgba(245,242,235,0.5); text-transform: uppercase; }
+  .skills-section { display: flex; flex-direction: column; gap: 30px; }
+  .skill-group-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rust); margin-bottom: 13px; }
+  .skill-list-inline { display: flex; flex-wrap: wrap; gap: 9px; }
+  .skill-chip { font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; padding: 7px 13px; background: rgba(245,242,235,0.07); border: 1px solid rgba(245,242,235,0.12); color: rgba(245,242,235,0.82); }
 
-  .timeline { display: flex; flex-direction: column; position: relative; }
-  .timeline::before { content: ''; position: absolute; left: 130px; top: 0; bottom: 0; width: 1px; background: rgba(15,14,12,0.1); }
-  .timeline-item { display: grid; grid-template-columns: 130px 1fr; gap: 0 48px; padding: 40px 0; border-bottom: 1px solid rgba(15,14,12,0.06); }
-  .timeline-date { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: rgba(15,14,12,0.4); padding-top: 4px; text-align: right; padding-right: 48px; line-height: 1.5; }
-  .timeline-role { font-family: var(--serif); font-size: 22px; color: var(--ink); margin-bottom: 2px; }
-  .timeline-org { font-family: var(--mono); font-size: 11px; color: var(--rust); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 14px; }
-  .timeline-bullets { display: flex; flex-direction: column; gap: 8px; }
-  .timeline-bullet { font-size: 14px; line-height: 1.65; color: rgba(15,14,12,0.62); padding-left: 16px; position: relative; }
-  .timeline-bullet::before { content: '—'; position: absolute; left: 0; color: var(--rust); font-size: 12px; }
+  /* ── EXPERIENCE ── */
+  .exp-grid { display: flex; flex-direction: column; gap: 3px; }
+  .exp-card {
+    border: 1px solid rgba(15,14,12,0.1);
+    background: var(--paper);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .exp-card:hover { border-color: rgba(15,14,12,0.25); }
+  .exp-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+    padding: 36px 40px 32px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .exp-header:hover .exp-toggle { color: var(--rust); }
+  .exp-role { font-family: var(--serif); font-size: 28px; color: var(--ink); margin-bottom: 6px; line-height: 1.2; }
+  .exp-meta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .exp-org { font-family: var(--mono); font-size: 12px; color: var(--rust); letter-spacing: 0.09em; text-transform: uppercase; }
+  .exp-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(15,14,12,0.25); flex-shrink: 0; }
+  .exp-date { font-family: var(--mono); font-size: 12px; color: rgba(15,14,12,0.4); letter-spacing: 0.06em; }
+  .exp-toggle { font-size: 22px; color: rgba(15,14,12,0.3); transition: transform 0.3s, color 0.2s; line-height: 1; margin-top: 4px; flex-shrink: 0; }
+  .exp-card.open .exp-toggle { transform: rotate(45deg); color: var(--rust); }
+  .exp-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+  .exp-card.open .exp-body { grid-template-rows: 1fr; }
+  .exp-body-inner {
+    overflow: hidden;
+  }
+  .exp-body-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid rgba(15,14,12,0.07);
+  }
+  .exp-bullets-col { padding: 32px 40px 40px; }
+  .exp-bullets { display: flex; flex-direction: column; gap: 12px; }
+  .exp-bullet { font-size: 16px; line-height: 1.72; color: rgba(15,14,12,0.64); padding-left: 20px; position: relative; }
+  .exp-bullet::before { content: '—'; position: absolute; left: 0; color: var(--rust); font-size: 13px; top: 2px; }
+  .exp-media-col {
+    border-left: 1px solid rgba(15,14,12,0.07);
+    background: rgba(15,14,12,0.02);
+    position: relative;
+    min-height: 200px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* Slideshow inside experience */
+  .exp-media-col .slideshow { width: 100%; height: 100%; }
+  .exp-media-col .slideshow-track img { aspect-ratio: unset; height: 100%; width: 100%; object-fit: cover; }
+  .exp-media-col .slideshow-placeholder {
+    aspect-ratio: unset; width: 100%; height: 100%; min-height: 200px;
+    background: transparent; border: none;
+  }
+  .timeline-slideshow {
+    position: relative; overflow: hidden;
+    border: 1px solid rgba(15,14,12,0.1); margin-top: 4px;
+  }
+  .timeline-slideshow .slideshow-track img { aspect-ratio: 16/9; object-fit: cover; }
+  .timeline-slideshow .slideshow-placeholder { aspect-ratio: 16/9; }
 
+  /* ── COURSEWORK ── */
+  #coursework { background: var(--ink); }
+  #coursework h2 { color: var(--paper); }
+  #coursework .section-num { color: rgba(245,242,235,0.35); }
+  #coursework .divider { background: rgba(245,242,235,0.12); }
+  .course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .course-card {
+    padding: 32px 30px;
+    border: 1px solid rgba(245,242,235,0.08);
+    background: rgba(245,242,235,0.03);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .course-card:hover { background: rgba(245,242,235,0.07); border-color: rgba(245,242,235,0.15); }
+  .course-card-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--rust); margin-bottom: 14px; display: block; }
+  .course-card-name { font-family: var(--serif); font-size: 22px; color: var(--paper); line-height: 1.25; margin-bottom: 10px; }
+  .course-card-desc { font-size: 14px; line-height: 1.68; color: rgba(245,242,235,0.52); }
+
+  /* ── CONTACT ── */
   #contact { padding-bottom: 120px; }
   .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .contact-big { font-family: var(--serif); font-size: clamp(34px, 4vw, 52px); line-height: 1.1; color: var(--ink); margin-bottom: 32px; }
+  .contact-big { font-family: var(--serif); font-size: clamp(36px, 4.5vw, 56px); line-height: 1.1; color: var(--ink); margin-bottom: 36px; }
   .contact-big em { font-style: italic; color: var(--rust); }
   .contact-links { display: flex; flex-direction: column; }
-  .contact-link { display: flex; align-items: center; gap: 16px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(15,14,12,0.1); transition: color 0.2s; }
+  .contact-link { display: flex; align-items: center; gap: 18px; font-family: var(--mono); font-size: 14px; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; padding: 20px 0; border-bottom: 1px solid rgba(15,14,12,0.1); transition: color 0.2s; }
   .contact-link:hover { color: var(--rust); }
-  .contact-link-type { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(15,14,12,0.35); min-width: 64px; }
-  .contact-form { display: flex; flex-direction: column; gap: 20px; }
+  .contact-link-type { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(15,14,12,0.35); min-width: 68px; }
+  .contact-form { display: flex; flex-direction: column; gap: 22px; }
   .form-field { display: flex; flex-direction: column; gap: 8px; }
-  .form-field label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(15,14,12,0.45); }
-  .form-field input, .form-field textarea { background: transparent; border: none; border-bottom: 1px solid rgba(15,14,12,0.2); padding: 10px 0; font-family: var(--sans); font-size: 15px; color: var(--ink); outline: none; width: 100%; transition: border-color 0.2s; resize: none; }
+  .form-field label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(15,14,12,0.45); }
+  .form-field input, .form-field textarea { background: transparent; border: none; border-bottom: 1px solid rgba(15,14,12,0.2); padding: 12px 0; font-family: var(--sans); font-size: 16px; color: var(--ink); outline: none; width: 100%; transition: border-color 0.2s; resize: none; }
   .form-field input:focus, .form-field textarea:focus { border-bottom-color: var(--rust); }
-  .form-submit { align-self: flex-start; padding: 14px 32px; background: var(--rust); color: var(--paper); border: none; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+  .form-submit { align-self: flex-start; padding: 15px 34px; background: var(--rust); color: var(--paper); border: none; font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
   .form-submit:hover { background: var(--ink); }
 
-  footer { position: relative; z-index: 1; padding: 24px 48px; border-top: 1px solid rgba(15,14,12,0.1); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-family: var(--mono); font-size: 11px; color: rgba(15,14,12,0.4); letter-spacing: 0.06em; }
+  footer { position: relative; z-index: 1; padding: 26px 52px; border-top: 1px solid rgba(15,14,12,0.1); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: var(--mono); font-size: 12px; color: rgba(15,14,12,0.4); letter-spacing: 0.06em; }
   .footer-copy span { color: var(--rust); }
 
+  /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   .hero-label { animation: fadeUp 0.6s ease both; }
   h1 { animation: fadeUp 0.7s 0.1s ease both; }
@@ -160,23 +303,24 @@
   .hero-blueprint { animation: fadeUp 0.8s 0.15s ease both; }
   .hero-stats { animation: fadeUp 0.8s 0.3s ease both; }
 
-  @media (max-width: 920px) {
+  @media (max-width: 960px) {
     nav { padding: 16px 24px; }
-    .nav-links { gap: 18px; }
+    .nav-links { gap: 16px; }
     section { padding: 72px 24px; }
-    .hero { padding: 100px 24px 60px; }
-    .hero-inner { grid-template-columns: 1fr; }
+    .hero { padding: 88px 24px 52px; }
+    .hero-inner, .about-grid, .contact-inner { grid-template-columns: 1fr; }
     .hero-right { align-items: flex-start; }
-    .hero-blueprint { max-width: 100%; }
-    .hero-stats { max-width: 100%; }
+    .hero-blueprint, .hero-stats { max-width: 100%; }
     .projects-grid { grid-template-columns: 1fr; }
-    .project-card.featured { grid-column: span 1; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
-    .timeline::before { display: none; }
-    .timeline-item { grid-template-columns: 1fr; gap: 4px; }
-    .timeline-date { text-align: left; padding-right: 0; }
+    .exp-body-content { grid-template-columns: 1fr; }
+    .exp-media-col { border-left: none; border-top: 1px solid rgba(15,14,12,0.07); min-height: 180px; }
+    .exp-header { padding: 28px 24px 24px; }
+    .exp-bullets-col { padding: 24px 24px 28px; }
+    .course-grid { grid-template-columns: 1fr 1fr; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .course-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -188,10 +332,12 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#coursework">Coursework</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-left">
@@ -264,68 +410,129 @@
   </div>
   <div class="projects-grid">
 
-    <div class="project-card featured">
+    <!-- PROJECT 1 — AUTONOMOUS ROBOT -->
+    <div class="project-card dark">
       <span class="project-num">01</span>
-      <span class="project-tag">Autonomous Systems · Aug – Nov 2025</span>
-      <h3>Autonomous Robot</h3>
-      <p class="project-desc">Designed and iterated 5 robots in SolidWorks, optimizing each for structural loading, manufacturability, and assembly under strict constraints — $120 budget, 2-motor limit, restricted energy sources. Led a 4-person team from customer requirements through GD&T engineering drawings and final competition.</p>
-      <div class="project-highlights">
-        <span class="project-highlight">47% reduction in task completion time</span>
-        <span class="project-highlight">90% success rate across 6 autonomous tasks in under 40s</span>
-        <span class="project-highlight">Arduino FSM with real-time sensor feedback and motor control</span>
+      <!--
+        HOW TO ADD IMAGES:
+        Replace the slideshow-placeholder div below with:
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="images/robot1.jpg" alt="Robot front view">
+            <img src="images/robot2.jpg" alt="Robot side view">
+            <img src="images/robot3.jpg" alt="Robot in action">
+          </div>
+          <button class="slideshow-btn prev">&#8592;</button>
+          <button class="slideshow-btn next">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      -->
+      <div class="slideshow-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Add images here</span>
       </div>
-      <div class="project-pills">
-        <span class="pill">Arduino</span>
-        <span class="pill">SolidWorks</span>
-        <span class="pill">3D Printing</span>
-        <span class="pill">Laser Cutting</span>
-        <span class="pill">GD&T</span>
-        <span class="pill">House of Quality</span>
-        <span class="pill">DFM</span>
+      <div class="project-body">
+        <span class="project-tag">Autonomous Systems · Aug – Nov 2025</span>
+        <h3>Autonomous Robot</h3>
+        <p class="project-desc">Designed and iterated 5 robots in SolidWorks, optimizing each for structural loading, manufacturability, and assembly under strict constraints — $120 budget, 2-motor limit, restricted energy sources. Led a 4-person team from customer requirements through GD&T drawings to competition.</p>
+        <div class="project-highlights">
+          <span class="project-highlight">47% reduction in task completion time</span>
+          <span class="project-highlight">90% success rate across 6 autonomous tasks in under 40s</span>
+          <span class="project-highlight">Arduino FSM with real-time sensor feedback and motor control</span>
+        </div>
+        <div class="project-pills">
+          <span class="pill">Arduino</span>
+          <span class="pill">SolidWorks</span>
+          <span class="pill">3D Printing</span>
+          <span class="pill">Laser Cutting</span>
+          <span class="pill">GD&T</span>
+          <span class="pill">House of Quality</span>
+          <span class="pill">DFM</span>
+        </div>
       </div>
     </div>
 
+    <!-- PROJECT 2 — FTC ROBOTS -->
     <div class="project-card">
       <span class="project-num">02</span>
-      <span class="project-tag">FTC Robotics · 2019 – 2024</span>
-      <h3>Competition Robots (×11)</h3>
-      <p class="project-desc">Designed, fabricated, and iterated 11 competition-legal robots (18"³) over five years. Built a sensor fusion system combining odometry, IMU, and AprilTag vision for autonomous localization.</p>
-      <div class="project-highlights">
-        <span class="project-highlight">78% localization accuracy improvement</span>
-        <span class="project-highlight">23% scoring reliability increase via PID</span>
+      <!--
+        HOW TO ADD IMAGES:
+        Replace the slideshow-placeholder div below with:
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="images/ftc1.jpg" alt="FTC robot 2024">
+            <img src="images/ftc2.jpg" alt="Competition day">
+          </div>
+          <button class="slideshow-btn prev">&#8592;</button>
+          <button class="slideshow-btn next">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      -->
+      <div class="slideshow-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Add images here</span>
       </div>
-      <div class="project-pills">
-        <span class="pill">SolidWorks</span>
-        <span class="pill">Onshape</span>
-        <span class="pill">Android Studio</span>
-        <span class="pill">PID Control</span>
-        <span class="pill">Sensor Fusion</span>
+      <div class="project-body">
+        <span class="project-tag">FTC Robotics · 2019 – 2024</span>
+        <h3>Competition Robots (×11)</h3>
+        <p class="project-desc">Designed, fabricated, and iterated 11 competition-legal robots (18"³) over five years. Built a sensor fusion system combining odometry, IMU, and AprilTag vision for autonomous localization. Competed at regional and state levels each season.</p>
+        <div class="project-highlights">
+          <span class="project-highlight">78% localization accuracy improvement via sensor fusion</span>
+          <span class="project-highlight">23% scoring reliability increase via PID motor control</span>
+        </div>
+        <div class="project-pills">
+          <span class="pill">SolidWorks</span>
+          <span class="pill">Onshape</span>
+          <span class="pill">Android Studio</span>
+          <span class="pill">PID Control</span>
+          <span class="pill">Sensor Fusion</span>
+        </div>
       </div>
     </div>
 
+    <!-- PROJECT 3 — FSAE CHASSIS -->
     <div class="project-card">
       <span class="project-num">03</span>
-      <span class="project-tag">GT Motorsports · 2025 – Present</span>
-      <h3>FSAE Chassis Mounts</h3>
-      <p class="project-desc">Iterating mounting tab designs for GT Motorsports based on FEA and dynamic load conditions. Collaborating across chassis and manufacturing teams for full vehicle assembly integration.</p>
-      <div class="project-pills">
-        <span class="pill">SolidWorks</span>
-        <span class="pill">FEA</span>
-        <span class="pill">Load Analysis</span>
-        <span class="pill">DFM</span>
+      <!--
+        HOW TO ADD IMAGES: Same pattern as above — replace placeholder with a slideshow div.
+      -->
+      <div class="slideshow-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Add images here</span>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">GT Motorsports · Sept 2025 – Present</span>
+        <h3>FSAE Chassis Mounts</h3>
+        <p class="project-desc">Iterating mounting tab designs for GT Motorsports based on FEA feedback and dynamic load conditions. Designing components that account for load paths, stress distribution, and manufacturability. Collaborating across chassis and manufacturing teams for full vehicle integration.</p>
+        <div class="project-pills">
+          <span class="pill">SolidWorks</span>
+          <span class="pill">FEA</span>
+          <span class="pill">Load Analysis</span>
+          <span class="pill">DFM</span>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
+    <!-- PROJECT 4 — SUSPENSION -->
+    <div class="project-card dark">
       <span class="project-num">04</span>
-      <span class="project-tag">HyTech Racing · 2024 – 2025</span>
-      <h3>Suspension Validation</h3>
-      <p class="project-desc">Manufactured precision suspension components on CNC lathe. Built and modified mechanical test setups for suspension system validation, applying dynamic loading principles throughout.</p>
-      <div class="project-pills">
-        <span class="pill">CNC Machining</span>
-        <span class="pill">Suspension Dynamics</span>
-        <span class="pill">Test Setup</span>
-        <span class="pill">Tolerancing</span>
+      <!--
+        HOW TO ADD IMAGES: Same pattern as above.
+      -->
+      <div class="slideshow-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Add images here</span>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">HyTech Racing · Sept 2024 – Apr 2025</span>
+        <h3>Suspension Validation</h3>
+        <p class="project-desc">Manufactured precision suspension components on CNC lathe, adhering to engineering drawings and tolerance requirements. Built and modified mechanical test setups for suspension system validation while applying dynamic loading knowledge to design and testing.</p>
+        <div class="project-pills">
+          <span class="pill">CNC Machining</span>
+          <span class="pill">Suspension Dynamics</span>
+          <span class="pill">Test Setup</span>
+          <span class="pill">Tolerancing</span>
+        </div>
       </div>
     </div>
 
@@ -341,7 +548,7 @@
   </div>
   <div class="about-grid">
     <div>
-      <p class="about-text">I'm a <strong>Mechanical Engineering student at Georgia Tech</strong> (GPA 3.92, graduating December 2027) with a background in robotics that started long before college — I was a captain and mechanical/CAD lead for my FTC team from age 14, designing and building competition robots every year through high school.</p>
+      <p class="about-text">I'm a <strong>Mechanical Engineering student at Georgia Tech</strong> (GPA 3.92, graduating December 2027) with a background in robotics that started long before college — I was captain and mechanical/CAD lead for my FTC team from age 14, designing and building competition robots every year through high school.</p>
       <br>
       <p class="about-text">I thrive at the edge of design and fabrication. I care deeply about <strong>why</strong> a component is shaped a certain way, and I'm equally comfortable iterating in SolidWorks and standing at a lathe. Currently racing on <strong>two FSAE teams simultaneously</strong> and actively seeking summer 2026 internships in aerospace, robotics, or advanced manufacturing.</p>
       <div class="coursework-row">
@@ -404,57 +611,219 @@
     <h2>Experience</h2>
     <div class="divider"></div>
   </div>
-  <div class="timeline">
+  <div class="exp-grid">
 
-    <div class="timeline-item">
-      <span class="timeline-date">Sept 2025 – Now</span>
-      <div class="timeline-content">
-        <p class="timeline-role">Chassis Team Member</p>
-        <p class="timeline-org">Georgia Tech Motorsports — FSAE</p>
-        <div class="timeline-bullets">
-          <p class="timeline-bullet">Improving structural reliability of chassis components by iterating mounting tab designs based on load conditions and FEA feedback</p>
-          <p class="timeline-bullet">Designing mounting components in SolidWorks accounting for load paths, stress distribution, and manufacturability</p>
-          <p class="timeline-bullet">Collaborating with chassis and manufacturing teams to integrate components into full vehicle assemblies</p>
+    <!-- EXP 1 -->
+    <div class="exp-card open">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div>
+          <p class="exp-role">Chassis Team Member</p>
+          <div class="exp-meta">
+            <span class="exp-org">Georgia Tech Motorsports — FSAE</span>
+            <span class="exp-dot"></span>
+            <span class="exp-date">Sept 2025 – Present</span>
+          </div>
+        </div>
+        <span class="exp-toggle">+</span>
+      </div>
+      <div class="exp-body">
+        <div class="exp-body-inner">
+          <div class="exp-body-content">
+            <div class="exp-bullets-col">
+              <div class="exp-bullets">
+                <p class="exp-bullet">Improving structural reliability of chassis components by iterating mounting tab designs based on load conditions and FEA feedback</p>
+                <p class="exp-bullet">Designing mounting components in SolidWorks accounting for load paths, stress distribution, and manufacturability</p>
+                <p class="exp-bullet">Collaborating with chassis and manufacturing teams to integrate components into full vehicle assemblies</p>
+              </div>
+            </div>
+            <div class="exp-media-col">
+              <!--
+                ADD IMAGES: Replace the placeholder below with:
+                <div class="slideshow" data-slideshow style="height:100%;">
+                  <div class="slideshow-track">
+                    <img src="images/gtm1.jpg" alt="Chassis work">
+                    <img src="images/gtm2.jpg" alt="FEA model">
+                  </div>
+                  <button class="slideshow-btn prev">&#8592;</button>
+                  <button class="slideshow-btn next">&#8594;</button>
+                  <div class="slideshow-dots"></div>
+                </div>
+              -->
+              <div class="slideshow-placeholder" style="border:none; background:transparent;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <span>Add images here</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="timeline-item">
-      <span class="timeline-date">Sept 2024 – Apr 2025</span>
-      <div class="timeline-content">
-        <p class="timeline-role">Suspension Team Member</p>
-        <p class="timeline-org">HyTech Racing — FSAE</p>
-        <div class="timeline-bullets">
-          <p class="timeline-bullet">Manufactured precision components using CNC lathe and manual machining, adhering to engineering drawings and tolerance requirements</p>
-          <p class="timeline-bullet">Built and modified mechanical test setups for suspension system validation</p>
-          <p class="timeline-bullet">Applied understanding of dynamic loading and suspension behavior to support design and testing efforts</p>
+    <!-- EXP 2 -->
+    <div class="exp-card">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div>
+          <p class="exp-role">Suspension Team Member</p>
+          <div class="exp-meta">
+            <span class="exp-org">HyTech Racing — FSAE</span>
+            <span class="exp-dot"></span>
+            <span class="exp-date">Sept 2024 – Apr 2025</span>
+          </div>
+        </div>
+        <span class="exp-toggle">+</span>
+      </div>
+      <div class="exp-body">
+        <div class="exp-body-inner">
+          <div class="exp-body-content">
+            <div class="exp-bullets-col">
+              <div class="exp-bullets">
+                <p class="exp-bullet">Manufactured precision components using CNC lathe and manual machining, adhering to engineering drawings and tolerance requirements</p>
+                <p class="exp-bullet">Built and modified mechanical test setups for suspension system validation</p>
+                <p class="exp-bullet">Applied understanding of dynamic loading and suspension behavior to support design and testing efforts</p>
+              </div>
+            </div>
+            <div class="exp-media-col">
+              <div class="slideshow-placeholder" style="border:none; background:transparent;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <span>Add images here</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="timeline-item">
-      <span class="timeline-date">2019 – 2024</span>
-      <div class="timeline-content">
-        <p class="timeline-role">Captain · Mechanical & CAD Lead · Programming Lead</p>
-        <p class="timeline-org">FTC Robotics</p>
-        <div class="timeline-bullets">
-          <p class="timeline-bullet">Led design and development of multiple robotic systems using CAD, fabrication, and system integration across five competitive seasons</p>
-          <p class="timeline-bullet">Mentored team members in mechanical design, prototyping, and engineering problem-solving</p>
-          <p class="timeline-bullet">Presented technical designs and competition results to industry professionals at regional and state events</p>
+    <!-- EXP 3 -->
+    <div class="exp-card">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div>
+          <p class="exp-role">Captain · Mechanical & CAD Lead · Programming Lead</p>
+          <div class="exp-meta">
+            <span class="exp-org">FTC Robotics</span>
+            <span class="exp-dot"></span>
+            <span class="exp-date">2019 – 2024</span>
+          </div>
+        </div>
+        <span class="exp-toggle">+</span>
+      </div>
+      <div class="exp-body">
+        <div class="exp-body-inner">
+          <div class="exp-body-content">
+            <div class="exp-bullets-col">
+              <div class="exp-bullets">
+                <p class="exp-bullet">Led design and development of multiple robotic systems using CAD, fabrication, and system integration across five competitive seasons</p>
+                <p class="exp-bullet">Mentored team members in mechanical design, prototyping, and engineering problem-solving</p>
+                <p class="exp-bullet">Presented technical designs and competition results to industry professionals at regional and state events</p>
+              </div>
+            </div>
+            <div class="exp-media-col">
+              <div class="slideshow-placeholder" style="border:none; background:transparent;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <span>Add images here</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="timeline-item">
-      <span class="timeline-date">2021 – Dec 2027</span>
-      <div class="timeline-content">
-        <p class="timeline-role">B.S. Mechanical Engineering</p>
-        <p class="timeline-org">Georgia Institute of Technology — Atlanta, GA</p>
-        <div class="timeline-bullets">
-          <p class="timeline-bullet">GPA: 3.92 / 4.0 — Expected graduation December 2027</p>
-          <p class="timeline-bullet">Coursework: Thermodynamics, Fluids, Statics, Dynamics, Material Science, Deformable Bodies, MATLAB Computing, Circuits & Electronics, Engineering Graphics & Design</p>
+    <!-- EXP 4 -->
+    <div class="exp-card">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div>
+          <p class="exp-role">B.S. Mechanical Engineering</p>
+          <div class="exp-meta">
+            <span class="exp-org">Georgia Institute of Technology</span>
+            <span class="exp-dot"></span>
+            <span class="exp-date">2021 – Dec 2027</span>
+          </div>
+        </div>
+        <span class="exp-toggle">+</span>
+      </div>
+      <div class="exp-body">
+        <div class="exp-body-inner">
+          <div class="exp-body-content">
+            <div class="exp-bullets-col">
+              <div class="exp-bullets">
+                <p class="exp-bullet">GPA: 3.92 / 4.0 — Expected graduation December 2027</p>
+                <p class="exp-bullet">Relevant coursework: Thermodynamics, Fluids, Statics, Dynamics, Material Science, Deformable Bodies, MATLAB, Circuits & Electronics, Engineering Graphics & Design</p>
+              </div>
+            </div>
+            <div class="exp-media-col">
+              <div class="slideshow-placeholder" style="border:none; background:transparent;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <span>Add images here</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COURSEWORK -->
+<section id="coursework">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Coursework</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="course-grid">
+
+    <div class="course-card">
+      <span class="course-card-num">ME 2110</span>
+      <p class="course-card-name">Creative Decisions & Design</p>
+      <p class="course-card-desc">End-to-end mechanical design process from customer requirements to working prototype. Applied House of Quality, morphological charts, and design matrices — directly used in autonomous robot project.</p>
+    </div>
+
+    <div class="course-card">
+      <span class="course-card-num">ME 2016</span>
+      <p class="course-card-name">Engineering Graphics & Design</p>
+      <p class="course-card-desc">3D modeling, 2D drawing production, and GD&T. Covers tolerancing, fits, and manufacturing callouts — the foundation of all my SolidWorks and Creo work.</p>
+    </div>
+
+    <div class="course-card">
+      <span class="course-card-num">ME 3322</span>
+      <p class="course-card-name">Thermodynamics</p>
+      <p class="course-card-desc">First and second law analysis, power and refrigeration cycles, thermodynamic properties of pure substances, and entropy. Core to thermal systems design.</p>
+    </div>
+
+    <div class="course-card">
+      <span class="course-card-num">ME 3340</span>
+      <p class="course-card-name">Fluid Mechanics</p>
+      <p class="course-card-desc">Fluid statics, continuity and Bernoulli equations, pipe flow, boundary layers, and drag. Underpins CFD work and FSAE aerodynamics understanding.</p>
+    </div>
+
+    <div class="course-card">
+      <span class="course-card-num">COE 2001</span>
+      <p class="course-card-name">Statics</p>
+      <p class="course-card-desc">Equilibrium of particles and rigid bodies, free body diagrams, trusses, frames, friction, and centroids. Essential for every structural component I design.</p>
+    </div>
+
+    <div class="course-card">
+      <span class="course-card-num">ME 2202</span>
+      <p class="course-card-name">Dynamics</p>
+      <p class="course-card-desc">Kinematics and kinetics of particles and rigid bodies, Newton-Euler equations, energy and momentum methods. Applied to robot arm design and FSAE suspension analysis.</p>
+    </div>
+
+    <div class="course-card">
+      <span class="course-card-num">MSE 2001</span>
+      <p class="course-card-name">Material Science</p>
+      <p class="course-card-desc">Crystal structures, phase diagrams, mechanical behavior, failure analysis, and material selection. Informs my choice between aluminum, steel, and composite in fabricated parts.</p>
+    </div>
+
+    <div class="course-card">
+      <span class="course-card-num">ME 3251</span>
+      <p class="course-card-name">Deformable Bodies</p>
+      <p class="course-card-desc">Stress and strain, axial/torsion/bending, beam deflection, column buckling, and Mohr's circle. Foundation for FEA interpretation and factor-of-safety decisions.</p>
+    </div>
+
+    <div class="course-card">
+      <span class="course-card-num">ECE 3710</span>
+      <p class="course-card-name">Circuits & Electronics</p>
+      <p class="course-card-desc">DC/AC circuit analysis, op-amps, diodes, and transistors. Gives context for the sensor and motor control work in my robotics projects.</p>
     </div>
 
   </div>
@@ -463,7 +832,7 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header">
-    <span class="section-num">04</span>
+    <span class="section-num">05</span>
     <h2>Contact</h2>
     <div class="divider"></div>
   </div>
@@ -504,6 +873,61 @@
   <span class="footer-copy">Anoop Purohitham <span>·</span> Mechanical Engineering <span>·</span> Georgia Tech</span>
   <span class="footer-copy">Atlanta, GA <span>·</span> Expected Dec 2027</span>
 </footer>
+
+<script>
+  function toggleExp(header) {
+    var card = header.closest('.exp-card');
+    card.classList.toggle('open');
+  }
+
+  document.querySelectorAll('[data-slideshow]').forEach(function(ss) {
+    var track = ss.querySelector('.slideshow-track');
+    var imgs = track ? track.querySelectorAll('img') : [];
+    var count = imgs.length;
+    if (count === 0) return;
+
+    var current = 0;
+    var dotsContainer = ss.querySelector('.slideshow-dots');
+    var prevBtn = ss.querySelector('.slideshow-btn.prev');
+    var nextBtn = ss.querySelector('.slideshow-btn.next');
+
+    if (count === 1) { ss.classList.add('slideshow-single'); }
+
+    // Build dots
+    var dots = [];
+    if (dotsContainer && count > 1) {
+      for (var i = 0; i < count; i++) {
+        var d = document.createElement('button');
+        d.className = 'slideshow-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dotsContainer.appendChild(d);
+        dots.push(d);
+        (function(idx) {
+          d.addEventListener('click', function() { goTo(idx); });
+        })(i);
+      }
+    }
+
+    function goTo(n) {
+      current = (n + count) % count;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); });
+
+    // Swipe support
+    var startX = 0;
+    ss.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+    ss.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+    });
+  });
+</script>
 
 </body>
 </html>
