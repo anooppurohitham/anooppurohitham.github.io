@@ -63,7 +63,7 @@
   .hero-contact-item { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 13px; color: rgba(15,14,12,0.58); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
   .hero-contact-item:hover { color: var(--rust); }
   .hero-contact-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rust); opacity: 0.5; }
-  .hero-cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 16px; padding: 22px 44px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
   .hero-cta:hover { background: var(--rust); }
   .hero-cta-arrow { transition: transform 0.2s; }
   .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
@@ -301,6 +301,26 @@
   .hero-contact-row { animation: fadeUp 0.7s 0.25s ease both; }
   .hero-cta { animation: fadeUp 0.7s 0.3s ease both; }
   .hero-blueprint { animation: fadeUp 0.8s 0.15s ease both; }
+  .hero-photo-wrap {
+    width: 100%; max-width: 460px;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    border: 1px solid rgba(15,14,12,0.1);
+    position: relative;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .hero-photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px;
+    background: rgba(15,14,12,0.03);
+    color: rgba(15,14,12,0.3);
+  }
+  .hero-photo-placeholder svg { opacity: 0.2; }
+  .hero-photo-placeholder span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .hero-photo-placeholder code { font-family: var(--mono); font-size: 11px; color: var(--rust); opacity: 0.7; }
   .hero-stats { animation: fadeUp 0.8s 0.3s ease both; }
 
   @media (max-width: 960px) {
@@ -332,7 +352,6 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#coursework">Coursework</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -346,51 +365,24 @@
       <p class="hero-desc">Building robots, racing cars, and precision systems. Junior at Georgia Tech (3.92 GPA) specializing in mechanical design, controls, and fabrication — with a bias toward things that actually move.</p>
       <div class="hero-contact-row">
         <a href="tel:3219784314" class="hero-contact-item"><span class="dot"></span>321-978-4314</a>
-        <a href="mailto:anooppurohith@gmail.com" class="hero-contact-item"><span class="dot"></span>anooppurohith@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#385956575748484d4a5750514c50785f55595154165b5755" class="hero-contact-item"><span class="dot"></span><span class="__cf_email__" data-cfemail="c3a2adacacb3b3b6b1acabaab7ab83a4aea2aaafeda0acae">[email&#160;protected]</span></a>
         <a href="https://linkedin.com/in/anoop-purohitham" target="_blank" class="hero-contact-item"><span class="dot"></span>LinkedIn</a>
       </div>
       <a href="#projects" class="hero-cta">View my work <span class="hero-cta-arrow">→</span></a>
     </div>
     <div class="hero-right">
-      <div class="hero-blueprint">
-        <svg viewBox="0 0 440 330" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="bp-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="0.5"/>
-            </pattern>
-          </defs>
-          <rect width="440" height="330" fill="#1a3a5c"/>
-          <rect width="440" height="330" fill="url(#bp-grid)"/>
-          <g transform="translate(80,55)" stroke="rgba(255,255,255,0.65)" fill="none" stroke-width="1.2">
-            <rect x="60" y="195" width="80" height="16" rx="2"/>
-            <line x1="100" y1="195" x2="100" y2="180"/>
-            <circle cx="100" cy="176" r="8" stroke-width="1.4"/>
-            <line x1="100" y1="168" x2="100" y2="122" stroke-width="2"/>
-            <circle cx="100" cy="118" r="7"/>
-            <line x1="106" y1="113" x2="158" y2="72" stroke-width="2"/>
-            <circle cx="161" cy="69" r="7"/>
-            <line x1="166" y1="64" x2="192" y2="44"/>
-            <line x1="192" y1="44" x2="202" y2="36"/>
-            <line x1="192" y1="44" x2="200" y2="55"/>
-            <text x="116" y="178" fill="rgba(255,255,255,0.45)" font-family="monospace" font-size="8" stroke="none">θ₁</text>
-            <text x="116" y="120" fill="rgba(255,255,255,0.45)" font-family="monospace" font-size="8" stroke="none">θ₂</text>
-            <text x="165" y="64" fill="rgba(255,255,255,0.45)" font-family="monospace" font-size="8" stroke="none">θ₃</text>
-            <line x1="54" y1="122" x2="54" y2="176" stroke="rgba(255,255,255,0.22)" stroke-width="0.6"/>
-            <line x1="50" y1="122" x2="58" y2="122" stroke="rgba(255,255,255,0.22)" stroke-width="0.6"/>
-            <line x1="50" y1="176" x2="58" y2="176" stroke="rgba(255,255,255,0.22)" stroke-width="0.6"/>
-            <text x="18" y="153" fill="rgba(255,255,255,0.38)" font-family="monospace" font-size="8" stroke="none">L1=120</text>
-          </g>
-          <text x="265" y="95" fill="rgba(255,255,255,0.32)" font-family="monospace" font-size="8">IMU FEEDBACK</text>
-          <text x="265" y="108" fill="rgba(255,255,255,0.32)" font-family="monospace" font-size="8">ODOMETRY</text>
-          <text x="265" y="121" fill="rgba(255,255,255,0.32)" font-family="monospace" font-size="8">APRILTAG VISION</text>
-          <line x1="263" y1="92" x2="263" y2="123" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
-          <rect x="0" y="277" width="440" height="53" fill="rgba(0,0,0,0.28)"/>
-          <line x1="0" y1="277" x2="440" y2="277" stroke="rgba(255,255,255,0.22)" stroke-width="0.5"/>
-          <text x="12" y="293" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="9">PROJECT: AUTONOMOUS ROBOT — FSM CONTROL</text>
-          <text x="12" y="308" fill="rgba(255,255,255,0.26)" font-family="monospace" font-size="8">DRAWN: A. PUROHITHAM · GT ME 2025</text>
-          <text x="340" y="293" fill="rgba(255,255,255,0.32)" font-family="monospace" font-size="8">REV: B</text>
-          <text x="340" y="308" fill="rgba(255,255,255,0.22)" font-family="monospace" font-size="8">SCALE: NTS</text>
-        </svg>
+      <!--
+        YOUR PHOTO: Put your headshot at images/headshot.jpg (alongside index.html).
+        Portrait or square crops work best. The image fills the panel automatically.
+      -->
+      <div class="hero-photo-wrap">
+        <img src="images/headshot.jpg" alt="Anoop Purohitham" class="hero-photo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="hero-photo-placeholder" style="display:none;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span>Add your photo</span>
+          <code>images/headshot.jpg</code>
+        </div>
       </div>
       <div class="hero-stats">
         <div class="stat"><span class="stat-num">3.92</span><span class="stat-label">GPA</span></div>
@@ -552,8 +544,9 @@
       <br>
       <p class="about-text">I thrive at the edge of design and fabrication. I care deeply about <strong>why</strong> a component is shaped a certain way, and I'm equally comfortable iterating in SolidWorks and standing at a lathe. Currently racing on <strong>two FSAE teams simultaneously</strong> and actively seeking summer 2026 internships in aerospace, robotics, or advanced manufacturing.</p>
       <div class="coursework-row">
+        <p class="skill-group-label" style="width:100%; margin-bottom:4px;">Relevant Coursework</p>
         <span class="course-tag">Thermodynamics</span>
-        <span class="course-tag">Fluids</span>
+        <span class="course-tag">Fluid Mechanics</span>
         <span class="course-tag">Statics</span>
         <span class="course-tag">Dynamics</span>
         <span class="course-tag">Material Science</span>
@@ -561,6 +554,7 @@
         <span class="course-tag">MATLAB</span>
         <span class="course-tag">Circuits & Electronics</span>
         <span class="course-tag">Engineering Design</span>
+        <span class="course-tag">Creative Decisions & Design</span>
       </div>
     </div>
     <div class="skills-section">
@@ -763,76 +757,10 @@
   </div>
 </section>
 
-<!-- COURSEWORK -->
-<section id="coursework">
-  <div class="section-header">
-    <span class="section-num">04</span>
-    <h2>Coursework</h2>
-    <div class="divider"></div>
-  </div>
-  <div class="course-grid">
-
-    <div class="course-card">
-      <span class="course-card-num">ME 2110</span>
-      <p class="course-card-name">Creative Decisions & Design</p>
-      <p class="course-card-desc">End-to-end mechanical design process from customer requirements to working prototype. Applied House of Quality, morphological charts, and design matrices — directly used in autonomous robot project.</p>
-    </div>
-
-    <div class="course-card">
-      <span class="course-card-num">ME 2016</span>
-      <p class="course-card-name">Engineering Graphics & Design</p>
-      <p class="course-card-desc">3D modeling, 2D drawing production, and GD&T. Covers tolerancing, fits, and manufacturing callouts — the foundation of all my SolidWorks and Creo work.</p>
-    </div>
-
-    <div class="course-card">
-      <span class="course-card-num">ME 3322</span>
-      <p class="course-card-name">Thermodynamics</p>
-      <p class="course-card-desc">First and second law analysis, power and refrigeration cycles, thermodynamic properties of pure substances, and entropy. Core to thermal systems design.</p>
-    </div>
-
-    <div class="course-card">
-      <span class="course-card-num">ME 3340</span>
-      <p class="course-card-name">Fluid Mechanics</p>
-      <p class="course-card-desc">Fluid statics, continuity and Bernoulli equations, pipe flow, boundary layers, and drag. Underpins CFD work and FSAE aerodynamics understanding.</p>
-    </div>
-
-    <div class="course-card">
-      <span class="course-card-num">COE 2001</span>
-      <p class="course-card-name">Statics</p>
-      <p class="course-card-desc">Equilibrium of particles and rigid bodies, free body diagrams, trusses, frames, friction, and centroids. Essential for every structural component I design.</p>
-    </div>
-
-    <div class="course-card">
-      <span class="course-card-num">ME 2202</span>
-      <p class="course-card-name">Dynamics</p>
-      <p class="course-card-desc">Kinematics and kinetics of particles and rigid bodies, Newton-Euler equations, energy and momentum methods. Applied to robot arm design and FSAE suspension analysis.</p>
-    </div>
-
-    <div class="course-card">
-      <span class="course-card-num">MSE 2001</span>
-      <p class="course-card-name">Material Science</p>
-      <p class="course-card-desc">Crystal structures, phase diagrams, mechanical behavior, failure analysis, and material selection. Informs my choice between aluminum, steel, and composite in fabricated parts.</p>
-    </div>
-
-    <div class="course-card">
-      <span class="course-card-num">ME 3251</span>
-      <p class="course-card-name">Deformable Bodies</p>
-      <p class="course-card-desc">Stress and strain, axial/torsion/bending, beam deflection, column buckling, and Mohr's circle. Foundation for FEA interpretation and factor-of-safety decisions.</p>
-    </div>
-
-    <div class="course-card">
-      <span class="course-card-num">ECE 3710</span>
-      <p class="course-card-name">Circuits & Electronics</p>
-      <p class="course-card-desc">DC/AC circuit analysis, op-amps, diodes, and transistors. Gives context for the sensor and motor control work in my robotics projects.</p>
-    </div>
-
-  </div>
-</section>
-
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header">
-    <span class="section-num">05</span>
+    <span class="section-num">04</span>
     <h2>Contact</h2>
     <div class="divider"></div>
   </div>
@@ -840,8 +768,8 @@
     <div>
       <p class="contact-big">Let's build something <em>real.</em></p>
       <div class="contact-links">
-        <a href="mailto:anooppurohith@gmail.com" class="contact-link">
-          <span class="contact-link-type">Email</span>anooppurohith@gmail.com
+        <a href="/cdn-cgi/l/email-protection#71101f1e1e010104031e1918051931161c10181d5f121e1c" class="contact-link">
+          <span class="contact-link-type">Email</span><span class="__cf_email__" data-cfemail="80e1eeefeff0f0f5f2efe8e9f4e8c0e7ede1e9ecaee3efed">[email&#160;protected]</span>
         </a>
         <a href="tel:3219784314" class="contact-link">
           <span class="contact-link-type">Phone</span>321-978-4314
@@ -874,7 +802,7 @@
   <span class="footer-copy">Atlanta, GA <span>·</span> Expected Dec 2027</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function toggleExp(header) {
     var card = header.closest('.exp-card');
     card.classList.toggle('open');
@@ -917,17 +845,4 @@
     }
 
     if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); });
-    if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); });
-
-    // Swipe support
-    var startX = 0;
-    ss.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-    ss.addEventListener('touchend', function(e) {
-      var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-    });
-  });
-</script>
-
-</body>
-</html>
+    if (nextBtn) nextBtn.addEventListener('click', function() 
