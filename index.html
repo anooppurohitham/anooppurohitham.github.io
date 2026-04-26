@@ -63,8 +63,8 @@
   .hero-contact-item { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 15px; color: rgba(15,14,12,0.58); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
   .hero-contact-item:hover { color: var(--rust); }
   .hero-contact-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rust); opacity: 0.5; }
-  .hero-cta { display: inline-flex; align-items: center; gap: 16px; padding: 22px 44px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
-  .hero-cta:hover { background: var(--rust); }
+  .hero-cta { display: inline-flex; align-items: center; gap: 20px; padding: 28px 56px; background: var(--rust); color: var(--paper); font-family: var(--mono); font-size: 20px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 32px rgba(192,57,43,0.3); }
+  .hero-cta:hover { background: var(--ink); transform: translateY(-2px); box-shadow: 0 8px 40px rgba(15,14,12,0.2); }
   .hero-cta-arrow { transition: transform 0.2s; }
   .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
   .hero-right { display: flex; flex-direction: column; align-items: flex-end; gap: 28px; justify-content: center; }
@@ -94,7 +94,8 @@
     display: flex;
     transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
   }
-  .slideshow-track img {
+  .slideshow-track img,
+  .slideshow-track video {
     flex-shrink: 0;
     width: 100%;
     aspect-ratio: 16/9;
@@ -145,34 +146,103 @@
   /* Hidden slideshows (single image or no images — no controls needed) */
   .slideshow-single .slideshow-btn,
   .slideshow-single .slideshow-dots { display: none; }
+  .slideshow-empty .slideshow-btn,
+  .slideshow-empty .slideshow-dots { display: none; }
+  .slideshow:not(.slideshow-empty) .slideshow-placeholder { display: none; }
 
   /* ── PROJECTS ── */
-  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
-  .project-card {
-    background: var(--paper);
-    border: 1px solid rgba(15,14,12,0.1);
-    position: relative;
-    transition: transform 0.25s, border-color 0.25s;
-    display: flex; flex-direction: column;
+  #projects { background: #1a1916; }
+  #projects h2 { color: var(--paper); }
+  #projects .section-num { color: rgba(245,242,235,0.35); }
+  #projects .divider { background: rgba(245,242,235,0.12); }
+  .projects-list { display: flex; flex-direction: column; gap: 0; }
+
+  /* =====================================================
+     HOW TO ADD A NEW PROJECT:
+     Copy one .project-item block and paste it below the last one.
+     Fill in: tag, title, description, highlights, pills, and images.
+     That's it — no CSS changes needed.
+  ====================================================== */
+  .project-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(560px, 52vw, 820px);
+    align-items: center;
+    padding-left: 36px;
+    border-top: 1px solid rgba(245,242,235,0.08);
+    transition: background 0.2s;
   }
-  .project-card:hover { transform: translateY(-4px); border-color: var(--rust); z-index: 2; }
-  .project-card.dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .project-body { padding: 36px 36px 40px; flex: 1; display: flex; flex-direction: column; }
-  .project-tag { font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); margin-bottom: 16px; display: block; }
-  .project-card.dark .project-tag { color: rgba(245,242,235,0.4); }
-  .project-num { position: absolute; top: 28px; right: 28px; font-family: var(--serif); font-size: 52px; color: rgba(15,14,12,0.04); line-height: 1; pointer-events: none; }
-  .project-card.dark .project-num { color: rgba(245,242,235,0.05); }
-  h3 { font-family: var(--serif); font-size: 34px; line-height: 1.2; margin-bottom: 14px; color: var(--ink); }
-  .project-card.dark h3 { color: var(--paper); }
-  .project-desc { font-size: 18px; line-height: 1.72; color: rgba(15,14,12,0.62); margin-bottom: 22px; flex: 1; }
-  .project-card.dark .project-desc { color: rgba(245,242,235,0.62); }
-  .project-highlights { display: flex; flex-direction: column; gap: 7px; margin-bottom: 22px; }
-  .project-highlight { font-family: var(--mono); font-size: 14px; letter-spacing: 0.04em; color: var(--rust); display: flex; align-items: flex-start; gap: 8px; }
-  .project-card.dark .project-highlight { color: #e8896e; }
-  .project-highlight::before { content: '↗'; font-size: 13px; margin-top: 1px; flex-shrink: 0; }
-  .project-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 4px; }
-  .pill { font-family: var(--mono); font-size: 13px; letter-spacing: 0.07em; text-transform: uppercase; padding: 6px 13px; border: 1px solid rgba(15,14,12,0.18); color: rgba(15,14,12,0.58); }
-  .project-card.dark .pill { border-color: rgba(245,242,235,0.2); color: rgba(245,242,235,0.62); }
+  .project-item:last-child { border-bottom: 1px solid rgba(245,242,235,0.08); }
+  .project-item:hover { background: rgba(245,242,235,0.03); }
+  .project-info { padding: 48px 64px 48px 0; display: flex; flex-direction: column; gap: 0; }
+  .project-media {
+    border-left: 1px solid rgba(245,242,235,0.08);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: rgba(0,0,0,0.45);
+  }
+
+  .project-tag { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,242,235,0.4); margin-bottom: 14px; display: block; }
+  .project-title { font-family: var(--serif); font-size: 36px; line-height: 1.15; color: var(--paper); margin-bottom: 16px; }
+  .project-desc { font-size: 17px; line-height: 1.72; color: rgba(245,242,235,0.6); margin-bottom: 24px; }
+  .project-highlights { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .project-highlight { font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; color: #e8896e; display: flex; align-items: flex-start; gap: 8px; }
+  .project-highlight::before { content: '↗'; flex-shrink: 0; }
+  .project-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+  .pill { font-family: var(--mono); font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; padding: 5px 12px; border: 1px solid rgba(245,242,235,0.18); color: rgba(245,242,235,0.5); }
+
+  .project-media .slideshow { position: absolute; inset: 0; height: auto; border-bottom: none; }
+  .project-media .slideshow-track { height: 100%; width: 100%; }
+  .project-media .slideshow-track img,
+  .project-media .slideshow-track video {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    aspect-ratio: unset;
+    background: rgba(0,0,0,0.45);
+  }
+  .project-media .slideshow-track video.video-portrait {
+    object-fit: contain;
+  }
+  .project-media .slideshow-track img { cursor: zoom-in; }
+  .project-media .slideshow-placeholder { height: 100%; min-height: 0; aspect-ratio: unset; border: none; background: rgba(245,242,235,0.03); }
+  .project-media .slideshow-placeholder svg { opacity: 0.15; filter: invert(1); }
+  .project-media .slideshow-placeholder span { color: rgba(245,242,235,0.25); }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: min(96vw, 2200px);
+    max-height: 94vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255,255,255,0.45);
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.15); }
 
   /* ── ABOUT ── */
   #about { background: var(--ink); color: var(--paper); }
@@ -191,69 +261,22 @@
 
   /* ── EXPERIENCE ── */
   .exp-grid { display: flex; flex-direction: column; gap: 3px; }
-  .exp-card {
-    border: 1px solid rgba(15,14,12,0.1);
-    background: var(--paper);
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .exp-card:hover { border-color: rgba(15,14,12,0.25); }
-  .exp-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 24px;
-    align-items: start;
-    padding: 36px 40px 32px;
-    cursor: pointer;
-    user-select: none;
-  }
-  .exp-header:hover .exp-toggle { color: var(--rust); }
+  .exp-card { border: 1px solid rgba(15,14,12,0.1); background: var(--paper); overflow: hidden; }
+  .exp-header { padding: 36px 40px 0; }
   .exp-role { font-family: var(--serif); font-size: 34px; color: var(--ink); margin-bottom: 6px; line-height: 1.2; }
   .exp-meta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .exp-org { font-family: var(--mono); font-size: 14px; color: var(--rust); letter-spacing: 0.09em; text-transform: uppercase; }
   .exp-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(15,14,12,0.25); flex-shrink: 0; }
   .exp-date { font-family: var(--mono); font-size: 14px; color: rgba(15,14,12,0.4); letter-spacing: 0.06em; }
-  .exp-toggle { font-size: 26px; color: rgba(15,14,12,0.3); transition: transform 0.3s, color 0.2s; line-height: 1; margin-top: 4px; flex-shrink: 0; }
-  .exp-card.open .exp-toggle { transform: rotate(45deg); color: var(--rust); }
-  .exp-body {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.35s ease;
-  }
-  .exp-card.open .exp-body { grid-template-rows: 1fr; }
-  .exp-body-inner {
-    overflow: hidden;
-  }
   .exp-body-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
+    display: block;
     border-top: 1px solid rgba(15,14,12,0.07);
+    margin-top: 24px;
   }
   .exp-bullets-col { padding: 32px 40px 40px; }
   .exp-bullets { display: flex; flex-direction: column; gap: 12px; }
   .exp-bullet { font-size: 18px; line-height: 1.72; color: rgba(15,14,12,0.64); padding-left: 22px; position: relative; }
   .exp-bullet::before { content: '—'; position: absolute; left: 0; color: var(--rust); font-size: 15px; top: 2px; }
-  .exp-media-col {
-    border-left: 1px solid rgba(15,14,12,0.07);
-    background: rgba(15,14,12,0.02);
-    position: relative;
-    min-height: 200px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  /* Slideshow inside experience */
-  .exp-media-col .slideshow { width: 100%; height: 100%; }
-  .exp-media-col .slideshow-track img { aspect-ratio: unset; height: 100%; width: 100%; object-fit: cover; }
-  .exp-media-col .slideshow-placeholder {
-    aspect-ratio: unset; width: 100%; height: 100%; min-height: 200px;
-    background: transparent; border: none;
-  }
-  .timeline-slideshow {
-    position: relative; overflow: hidden;
-    border: 1px solid rgba(15,14,12,0.1); margin-top: 4px;
-  }
-  .timeline-slideshow .slideshow-track img { aspect-ratio: 16/9; object-fit: cover; }
-  .timeline-slideshow .slideshow-placeholder { aspect-ratio: 16/9; }
 
   /* ── COURSEWORK ── */
   #coursework { background: var(--ink); }
@@ -274,7 +297,7 @@
 
   /* ── CONTACT ── */
   #contact { padding-bottom: 120px; }
-  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-inner { max-width: 760px; }
   .contact-big { font-family: var(--serif); font-size: clamp(40px, 5vw, 64px); line-height: 1.1; color: var(--ink); margin-bottom: 36px; }
   .contact-big em { font-style: italic; color: var(--rust); }
   .contact-links { display: flex; flex-direction: column; }
@@ -331,9 +354,9 @@
     .hero-inner, .about-grid, .contact-inner { grid-template-columns: 1fr; }
     .hero-right { align-items: flex-start; }
     .hero-blueprint, .hero-stats { max-width: 100%; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .exp-body-content { grid-template-columns: 1fr; }
-    .exp-media-col { border-left: none; border-top: 1px solid rgba(15,14,12,0.07); min-height: 180px; }
+    .projects-list .project-item { grid-template-columns: 1fr; padding-left: 0; }
+    .project-info { padding: 36px 0; }
+    .project-media { border-left: none; border-top: 1px solid rgba(15,14,12,0.1); width: 100%; aspect-ratio: 16 / 9; }
     .exp-header { padding: 28px 24px 24px; }
     .exp-bullets-col { padding: 24px 24px 28px; }
     .course-grid { grid-template-columns: 1fr 1fr; }
@@ -350,8 +373,8 @@
   <a href="#" class="nav-logo">AP<span>.</span>ENG</a>
   <ul class="nav-links">
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -362,10 +385,9 @@
     <div class="hero-left">
       <p class="hero-label">Mechanical Engineering — Georgia Tech</p>
       <h1>Anoop<br>Purohitham<em>.</em></h1>
-      <p class="hero-desc">Building robots, racing cars, and precision systems. Junior at Georgia Tech (3.92 GPA) specializing in mechanical design, controls, and fabrication — with a bias toward things that actually move.</p>
       <div class="hero-contact-row">
         <a href="tel:3219784314" class="hero-contact-item"><span class="dot"></span>321-978-4314</a>
-        <a href="/cdn-cgi/l/email-protection#385956575748484d4a5750514c50785f55595154165b5755" class="hero-contact-item"><span class="dot"></span><span class="__cf_email__" data-cfemail="c3a2adacacb3b3b6b1acabaab7ab83a4aea2aaafeda0acae">[email&#160;protected]</span></a>
+        <a href="mailto:anooppurohith@gmail.com" class="hero-contact-item"><span class="dot"></span>anooppurohith@gmail.com</a>
         <a href="https://linkedin.com/in/anoop-purohitham" target="_blank" class="hero-contact-item"><span class="dot"></span>LinkedIn</a>
       </div>
       <a href="#projects" class="hero-cta">View my work <span class="hero-cta-arrow">→</span></a>
@@ -376,18 +398,13 @@
         Portrait or square crops work best. The image fills the panel automatically.
       -->
       <div class="hero-photo-wrap">
-        <img src="images/headshot.jpg" alt="Anoop Purohitham" class="hero-photo"
+        <img src="Media/Headshot.png" alt="Anoop Purohitham" class="hero-photo"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="hero-photo-placeholder" style="display:none;">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           <span>Add your photo</span>
-          <code>images/headshot.jpg</code>
+          <code>media/Headshot.png</code>
         </div>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><span class="stat-num">3.92</span><span class="stat-label">GPA</span></div>
-        <div class="stat"><span class="stat-num">11+</span><span class="stat-label">Robots Built</span></div>
-        <div class="stat"><span class="stat-num">2</span><span class="stat-label">FSAE Teams</span></div>
       </div>
     </div>
   </div>
@@ -400,32 +417,54 @@
     <h2>Projects</h2>
     <div class="divider"></div>
   </div>
-  <div class="projects-grid">
+  <div class="projects-list">
 
-    <!-- PROJECT 1 — AUTONOMOUS ROBOT -->
-    <div class="project-card dark">
-      <span class="project-num">01</span>
-      <!--
-        HOW TO ADD IMAGES:
-        Replace the slideshow-placeholder div below with:
+    <!-- ============================================================
+         PROJECT TEMPLATE — copy this block to add a new project
+         ============================================================
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">Category · Date Range</span>
+        <p class="project-title">Project Name</p>
+        <p class="project-desc">What you did and why it mattered.</p>
+        <div class="project-highlights">
+          <span class="project-highlight">Key result or metric</span>
+          <span class="project-highlight">Another achievement</span>
+        </div>
+        <div class="project-pills">
+          <span class="pill">Tool 1</span>
+          <span class="pill">Tool 2</span>
+        </div>
+      </div>
+      <div class="project-media">
+        OPTION A — single image:
+        <img src="images/yourphoto.jpg" alt="Description" style="width:100%;height:100%;object-fit:cover;">
+
+        OPTION B — slideshow:
         <div class="slideshow" data-slideshow>
           <div class="slideshow-track">
-            <img src="images/robot1.jpg" alt="Robot front view">
-            <img src="images/robot2.jpg" alt="Robot side view">
-            <img src="images/robot3.jpg" alt="Robot in action">
+            <img src="images/photo1.jpg" alt="View 1">
+            <img src="images/photo2.jpg" alt="View 2">
           </div>
           <button class="slideshow-btn prev">&#8592;</button>
           <button class="slideshow-btn next">&#8594;</button>
           <div class="slideshow-dots"></div>
         </div>
-      -->
-      <div class="slideshow-placeholder">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <span>Add images here</span>
+
+        OPTION C — no image yet (shows placeholder):
+        <div class="slideshow-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add images here</span>
+        </div>
       </div>
-      <div class="project-body">
-        <span class="project-tag">Autonomous Systems · Aug – Nov 2025</span>
-        <h3>Autonomous Robot</h3>
+    </div>
+    ============================================================ -->
+
+    <!-- PROJECT 1 — AUTONOMOUS ROBOT -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">ME 2110 Designs and Decisions · Aug – Nov 2025</span>
+        <p class="project-title">Autonomous Robot</p>
         <p class="project-desc">Designed and iterated 5 robots in SolidWorks, optimizing each for structural loading, manufacturability, and assembly under strict constraints — $120 budget, 2-motor limit, restricted energy sources. Led a 4-person team from customer requirements through GD&T drawings to competition.</p>
         <div class="project-highlights">
           <span class="project-highlight">47% reduction in task completion time</span>
@@ -442,59 +481,78 @@
           <span class="pill">DFM</span>
         </div>
       </div>
-    </div>
-
-    <!-- PROJECT 2 — FTC ROBOTS -->
-    <div class="project-card">
-      <span class="project-num">02</span>
-      <!--
-        HOW TO ADD IMAGES:
-        Replace the slideshow-placeholder div below with:
+      <div class="project-media">
         <div class="slideshow" data-slideshow>
           <div class="slideshow-track">
-            <img src="images/ftc1.jpg" alt="FTC robot 2024">
-            <img src="images/ftc2.jpg" alt="Competition day">
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="Autonomous robot video 2">
+              <source src="Media/Autonomous Robot/me2110_web.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="Autonomous robot video 1">
+              <source src="Media/Autonomous Robot/IMG_4211_web.mp4" type="video/mp4">
+            </video>
+            <img src="Media/Autonomous Robot/2fe4.png" alt="Autonomous robot image 1">
+            <img src="Media/Autonomous Robot/2fe6.png" alt="Autonomous robot image 2">
+            <img src="Media/Autonomous Robot/robot 1.png" alt="Autonomous robot image 3">
+            <img src="Media/Autonomous Robot/robot 2.png" alt="Autonomous robot image 4">
+            <img src="Media/Autonomous Robot/robot 3.png" alt="Autonomous robot image 5">
+            <img src="Media/Autonomous Robot/robot 4.png" alt="Autonomous robot image 6">
+            <img src="Media/Autonomous Robot/robot 5.png" alt="Autonomous robot image 7">
+            <img src="Media/Autonomous Robot/robot 6.png" alt="Autonomous robot image 8">
+            <img src="Media/Autonomous Robot/rp1.png" alt="Autonomous robot image 9">
+            <img src="Media/Autonomous Robot/rp2.png" alt="Autonomous robot image 10">
           </div>
-          <button class="slideshow-btn prev">&#8592;</button>
-          <button class="slideshow-btn next">&#8594;</button>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
           <div class="slideshow-dots"></div>
         </div>
-      -->
-      <div class="slideshow-placeholder">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <span>Add images here</span>
       </div>
-      <div class="project-body">
-        <span class="project-tag">FTC Robotics · 2019 – 2024</span>
-        <h3>Competition Robots (×11)</h3>
-        <p class="project-desc">Designed, fabricated, and iterated 11 competition-legal robots (18"³) over five years. Built a sensor fusion system combining odometry, IMU, and AprilTag vision for autonomous localization. Competed at regional and state levels each season.</p>
-        <div class="project-highlights">
-          <span class="project-highlight">78% localization accuracy improvement via sensor fusion</span>
-          <span class="project-highlight">23% scoring reliability increase via PID motor control</span>
-        </div>
+    </div>
+
+    <!-- PROJECT 2 — FTC ROBOT (2024) -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">FTC Robotics · 2024</span>
+        <p class="project-title">Competition Robot — 2024 Season</p>
+        <p class="project-desc">Placeholder summary. Add this season's robot concept, role, key mechanisms, and outcomes.</p>
         <div class="project-pills">
+          <span class="pill">FTC</span>
           <span class="pill">SolidWorks</span>
-          <span class="pill">Onshape</span>
-          <span class="pill">Android Studio</span>
-          <span class="pill">PID Control</span>
-          <span class="pill">Sensor Fusion</span>
+          <span class="pill">Controls</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="Media/Competition Robot 2024/CC99789C-8734-4577-BD4B-2A0EB30D50C9.JPG" alt="Competition robot 2024 image 1">
+            <img src="Media/Competition Robot 2024/League Meet 2 Intake Render Take 1.png" alt="Competition robot 2024 image 2">
+            <img src="Media/Competition Robot 2024/League Meet 3 Render Full Robot.png" alt="Competition robot 2024 image 3">
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="Competition robot 2024 video 1">
+              <source src="Media/Competition Robot 2024/118867E9-EF31-40D4-92CE-966E99D2CE60_web.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="Competition robot 2024 video 2">
+              <source src="Media/Competition Robot 2024/80D2431B-F1FE-49AD-95DC-7A45D22AB011_web.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
         </div>
       </div>
     </div>
 
     <!-- PROJECT 3 — FSAE CHASSIS -->
-    <div class="project-card">
-      <span class="project-num">03</span>
-      <!--
-        HOW TO ADD IMAGES: Same pattern as above — replace placeholder with a slideshow div.
-      -->
-      <div class="slideshow-placeholder">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <span>Add images here</span>
-      </div>
-      <div class="project-body">
+    <div class="project-item">
+      <div class="project-info">
         <span class="project-tag">GT Motorsports · Sept 2025 – Present</span>
-        <h3>FSAE Chassis Mounts</h3>
+        <p class="project-title">FSAE Chassis Mounts, Fixtures, and Firewalls</p>
         <p class="project-desc">Iterating mounting tab designs for GT Motorsports based on FEA feedback and dynamic load conditions. Designing components that account for load paths, stress distribution, and manufacturability. Collaborating across chassis and manufacturing teams for full vehicle integration.</p>
         <div class="project-pills">
           <span class="pill">SolidWorks</span>
@@ -503,27 +561,488 @@
           <span class="pill">DFM</span>
         </div>
       </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <!-- Add FSAE chassis mounts media to Media/FSAE Chassis Mounts -->
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- PROJECT 4 — SUSPENSION -->
-    <div class="project-card dark">
-      <span class="project-num">04</span>
-      <!--
-        HOW TO ADD IMAGES: Same pattern as above.
-      -->
-      <div class="slideshow-placeholder">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <span>Add images here</span>
-      </div>
-      <div class="project-body">
-        <span class="project-tag">HyTech Racing · Sept 2024 – Apr 2025</span>
-        <h3>Suspension Validation</h3>
-        <p class="project-desc">Manufactured precision suspension components on CNC lathe, adhering to engineering drawings and tolerance requirements. Built and modified mechanical test setups for suspension system validation while applying dynamic loading knowledge to design and testing.</p>
+    <!-- PROJECT 4 — FTC ROBOT (2023) -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">FTC Robotics · 2023</span>
+        <p class="project-title">Competition Robot — 2023 Season</p>
+        <p class="project-desc">Placeholder summary. Add this season's robot concept, role, key mechanisms, and outcomes.</p>
         <div class="project-pills">
-          <span class="pill">CNC Machining</span>
-          <span class="pill">Suspension Dynamics</span>
-          <span class="pill">Test Setup</span>
-          <span class="pill">Tolerancing</span>
+          <span class="pill">FTC</span>
+          <span class="pill">SolidWorks</span>
+          <span class="pill">Controls</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="Competition robot 2023 video 1">
+              <source src="Media/Competition Robot 2023/A5E388A3-C92A-4AFA-AE6B-2AD326B451E5_web.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="Competition robot 2023 video 2">
+              <source src="Media/Competition Robot 2023/IMG_0934_web.mp4" type="video/mp4">
+            </video>
+            <img src="Media/Competition Robot 2023/7DD0E9DD-2B83-4BEC-8924-B0E1B173AA6D.JPG" alt="Competition robot 2023 image 1">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 — 4-DOF ARM -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">Robotics · In Progress</span>
+        <p class="project-title">Custom 4-DOF Robotic System with Vision Feedback</p>
+        <p class="project-desc">Placeholder summary. Add kinematics, controls, vision pipeline, and testing outcomes.</p>
+        <div class="project-pills">
+          <span class="pill">Vision</span>
+          <span class="pill">Controls</span>
+          <span class="pill">TBD</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="Custom 4-DOF video 2">
+              <source src="Media/Custom 4-DOF/313439BD-435C-401C-912C-2CE4111A3FDD_web.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="Custom 4-DOF video 1">
+              <source src="Media/Custom 4-DOF/141F6C7C-CDBA-4226-B42C-DF5ABCB93E9C_web.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="Custom 4-DOF video 3">
+              <source src="Media/Custom 4-DOF/Snapchat-5895739_web.mp4" type="video/mp4">
+            </video>
+            <img src="Media/Custom 4-DOF/Screenshot 2026-04-26 171137.png" alt="Custom 4-DOF image 1">
+            <img src="Media/Custom 4-DOF/Screenshot 2026-04-26 171553.png" alt="Custom 4-DOF image 2">
+            <img src="Media/Custom 4-DOF/Screenshot 2026-04-26 171620.png" alt="Custom 4-DOF image 3">
+            <img src="Media/Custom 4-DOF/Screenshot 2026-04-26 171649.png" alt="Custom 4-DOF image 4">
+            <img src="Media/Custom 4-DOF/Screenshot 2026-04-26 171733.png" alt="Custom 4-DOF image 5">
+            <img src="Media/Custom 4-DOF/Screenshot 2026-04-26 174054.png" alt="Custom 4-DOF image 6">
+            <img src="Media/Custom 4-DOF/Screenshot 2026-04-26 174246.png" alt="Custom 4-DOF image 7">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 — AUTONOMOUS LOCALIZATION ALGORITHM -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">Autonomous Systems · In Progress</span>
+        <p class="project-title">Autonomous Localization Algorithm With Multi Sensor Fusion</p>
+        <p class="project-desc">Placeholder summary. Add fusion architecture, filtering strategy, and quantitative localization performance.</p>
+        <div class="project-pills">
+          <span class="pill">Vision</span>
+          <span class="pill">AprilTag</span>
+          <span class="pill">Odometry</span>
+          <span class="pill">IMU</span>
+          <span class="pill">Ultrasonic</span>
+          <span class="pill">Limit Switches</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="Autonomous localization video 1">
+              <source src="Media/Autonomous Localization/E38156BF-7009-4146-AB0A-36E5885E61F0_web.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 7 — ME 1670 SCOOTER BASKET -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">ME 1670 · In Progress</span>
+        <p class="project-title">ME 1670 Scooter Basket</p>
+        <p class="project-desc">Placeholder summary. Add design goals, constraints, process, and results.</p>
+        <div class="project-pills">
+          <span class="pill">TBD</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="Media/Scooter Basket/Picture1.jpg" alt="Scooter basket image 1">
+            <img src="Media/Scooter Basket/Picture2.png" alt="Scooter basket image 2">
+            <img src="Media/Scooter Basket/Picture3.png" alt="Scooter basket image 3">
+            <img src="Media/Scooter Basket/Picture4.png" alt="Scooter basket image 4">
+            <img src="Media/Scooter Basket/Picture5.png" alt="Scooter basket image 5">
+            <img src="Media/Scooter Basket/Screenshot 2026-04-26 162755.png" alt="Scooter basket image 6">
+            <img src="Media/Scooter Basket/Screenshot 2026-04-26 162829.png" alt="Scooter basket image 7">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 8 — ME 1670 CUSTOM STANDING DESK -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">ME 1670 · In Progress</span>
+        <p class="project-title">ME 1670 Custom Standing Desk</p>
+        <p class="project-desc">Placeholder summary. Add design objectives, mechanisms, fabrication, and outcomes.</p>
+        <div class="project-pills">
+          <span class="pill">TBD</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="Media/Standing Desk/Screenshot 2026-04-26 164521.png" alt="Standing desk image 1">
+            <img src="Media/Standing Desk/Screenshot 2026-04-26 164543.png" alt="Standing desk image 2">
+            <img src="Media/Standing Desk/Screenshot 2026-04-26 164613.png" alt="Standing desk image 3">
+            <img src="Media/Standing Desk/Screenshot 2026-04-26 164709.png" alt="Standing desk image 4">
+            <img src="Media/Standing Desk/Screenshot 2026-04-26 164725.png" alt="Standing desk image 5">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 9 — ME 2016 THERMAL GRADIENT SCRIPTS -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">ME 2016 · In Progress</span>
+        <p class="project-title">MATLAB Scripts for Thermal Gradient Approximation</p>
+        <p class="project-desc">Placeholder summary. Add modeling method, assumptions, and validation details.</p>
+        <div class="project-pills">
+          <span class="pill">MATLAB</span>
+          <span class="pill">TBD</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <!-- Add thermal gradient approximation media to Media/Thermal Gradient Approximation -->
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 10 — GCODE TO STL -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">Computational Tools · In Progress</span>
+        <p class="project-title">MATLAB Scripts to Reverse-Build GCODE into STL</p>
+        <p class="project-desc">Placeholder summary. Add parsing approach, geometry reconstruction logic, and outputs.</p>
+        <div class="project-pills">
+          <span class="pill">MATLAB</span>
+          <span class="pill">GCODE</span>
+          <span class="pill">STL</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="Media/GCODE to Stl/1.png" alt="GCODE to STL image 1">
+            <img src="Media/GCODE to Stl/2.png" alt="GCODE to STL image 2">
+            <img src="Media/GCODE to Stl/3.png" alt="GCODE to STL image 3">
+            <img src="Media/GCODE to Stl/4.png" alt="GCODE to STL image 4">
+            <img src="Media/GCODE to Stl/9.png" alt="GCODE to STL image 5">
+            <img src="Media/GCODE to Stl/Screenshot 2026-04-26 175031.png" alt="GCODE to STL image 6">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 11 — LINEAR ODOMETRY PODS -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">Robotics Hardware · In Progress</span>
+        <p class="project-title">Custom Spring-Tensioned Linear Odometry Pods</p>
+        <p class="project-desc">Placeholder summary. Add mechanism design, sensor integration, and performance results.</p>
+        <div class="project-pills">
+          <span class="pill">Robotics</span>
+          <span class="pill">TBD</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="Media/Linear Odo pods/54589E90-555F-4E48-A4E3-352E2897E65E.JPG" alt="Linear odometry pods image 1">
+            <img src="Media/Linear Odo pods/77139C02-AAB4-4F13-BC9C-5FAF5E7CD575.JPG" alt="Linear odometry pods image 2">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 12 — GT QURBANI STAGE PRODUCTION -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">Stage Production · In Progress</span>
+        <p class="project-title">GT Qurbani Stage Production</p>
+        <p class="project-desc">Placeholder summary. Add production scope, technical responsibilities, and event impact.</p>
+        <div class="project-pills">
+          <span class="pill">Production</span>
+          <span class="pill">TBD</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="Media/GT Qurbani Stage Production/IMG_6929.JPG" alt="GT Qurbani stage production image 3">
+            <img src="Media/GT Qurbani Stage Production/Screenshot 2026-04-26 161013.png" alt="GT Qurbani stage production image 4">
+            <video autoplay muted loop playsinline controls preload="metadata" aria-label="GT Qurbani stage production video 1">
+              <source src="Media/GT Qurbani Stage Production/AA932A6B-2B5F-4913-8467-C6A3C76E2BFB_web.mp4" type="video/mp4">
+            </video>
+            <img src="Media/GT Qurbani Stage Production/20076146-8439-4AB6-A39D-025751E4D717.JPG" alt="GT Qurbani stage production image 1">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 13 — XM5 FIX -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">Consumer Hardware Repair · In Progress</span>
+        <p class="project-title">Sony WH-1000XM5 Headphone Fix</p>
+        <p class="project-desc">Placeholder summary. Add failure analysis, repair design, fabrication, and durability notes.</p>
+        <div class="project-pills">
+          <span class="pill">Repair</span>
+          <span class="pill">TBD</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="Media/XM5 Headphone Fix/IMG_6254.jpeg" alt="XM5 headphone fix image 1">
+            <img src="Media/XM5 Headphone Fix/IMG_6255.jpeg" alt="XM5 headphone fix image 2">
+            <img src="Media/XM5 Headphone Fix/IMG_6256.jpeg" alt="XM5 headphone fix image 3">
+            <img src="Media/XM5 Headphone Fix/Screenshot 2026-04-26 163119.png" alt="XM5 headphone fix image 4">
+            <img src="Media/XM5 Headphone Fix/Screenshot 2026-04-26 163212.png" alt="XM5 headphone fix image 5">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 14 — STAGE MARKERS -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">Stage Engineering · In Progress</span>
+        <p class="project-title">Stage Markers</p>
+        <p class="project-desc">Placeholder summary. Add design intent, materials, deployment context, and improvements.</p>
+        <div class="project-pills">
+          <span class="pill">Stage Tech</span>
+          <span class="pill">TBD</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="Media/Stage Markers/247D9AA1-55A5-4456-809B-541D209BDD43.JPG" alt="Stage markers image 1">
+            <img src="Media/Stage Markers/D82B5644-626E-4C93-B254-67AE7E5BA408.JPG" alt="Stage markers image 2">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 15 — ART-NET LIGHTING FIXTURE -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">Lighting + Embedded Systems · In Progress</span>
+        <p class="project-title">Art-Net Lighting Fixture</p>
+        <p class="project-desc">Placeholder summary. Add control architecture, hardware integration, and show deployment.</p>
+        <div class="project-pills">
+          <span class="pill">ESP32</span>
+          <span class="pill">Artnet</span>
+          <span class="pill">EL Wire</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="Media/Art-Net Lighting Fixture/IMG_5245.jpeg" alt="Art-Net lighting fixture image 1">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 16 — WIRELESS DMX TO RGB LED -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">Wireless Lighting Control · In Progress</span>
+        <p class="project-title">Completely Wireless DMX to RGB LED</p>
+        <p class="project-desc">Placeholder summary. Add wireless protocol, latency/performance, and deployment details.</p>
+        <div class="project-pills">
+          <span class="pill">Wireless DMX</span>
+          <span class="pill">RGB LEDs</span>
+          <span class="pill">TBD</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <img src="Media/Wireless DMX to RGB/IMG_5191.jpeg" alt="Wireless DMX to RGB image 1">
+            <img src="Media/Wireless DMX to RGB/IMG_5192.jpeg" alt="Wireless DMX to RGB image 2">
+            <img src="Media/Wireless DMX to RGB/IMG_5193.jpeg" alt="Wireless DMX to RGB image 3">
+            <img src="Media/Wireless DMX to RGB/IMG_5194.jpeg" alt="Wireless DMX to RGB image 4">
+            <img src="Media/Wireless DMX to RGB/IMG_5195.jpeg" alt="Wireless DMX to RGB image 5">
+            <img src="Media/Wireless DMX to RGB/IMG_5196.jpeg" alt="Wireless DMX to RGB image 6">
+            <img src="Media/Wireless DMX to RGB/Screenshot 2026-04-26 163314.png" alt="Wireless DMX to RGB image 7">
+            <img src="Media/Wireless DMX to RGB/Screenshot 2026-04-26 163423.png" alt="Wireless DMX to RGB image 8">
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 17 — FTC ROBOT (2022) -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">FTC Robotics · 2022</span>
+        <p class="project-title">Competition Robot — 2022 Season</p>
+        <p class="project-desc">Placeholder summary. Add this season's robot concept, role, key mechanisms, and outcomes.</p>
+        <div class="project-pills">
+          <span class="pill">FTC</span>
+          <span class="pill">SolidWorks</span>
+          <span class="pill">Controls</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <!-- Add 2022 robot media to Media/Competition Robot 2022 -->
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 18 — FTC ROBOT (2021) -->
+    <div class="project-item">
+      <div class="project-info">
+        <span class="project-tag">FTC Robotics · 2021</span>
+        <p class="project-title">Competition Robot — 2021 Season</p>
+        <p class="project-desc">Placeholder summary. Add this season's robot concept, role, key mechanisms, and outcomes.</p>
+        <div class="project-pills">
+          <span class="pill">FTC</span>
+          <span class="pill">SolidWorks</span>
+          <span class="pill">Controls</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="slideshow" data-slideshow>
+          <div class="slideshow-track">
+            <!-- Add 2021 robot media to Media/Competition Robot 2021 -->
+          </div>
+          <div class="slideshow-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add images here</span>
+          </div>
+          <button class="slideshow-btn prev" aria-label="Previous slide">&#8592;</button>
+          <button class="slideshow-btn next" aria-label="Next slide">&#8594;</button>
+          <div class="slideshow-dots"></div>
         </div>
       </div>
     </div>
@@ -532,17 +1051,119 @@
 </section>
 
 <!-- ABOUT -->
-<section id="about">
+<!-- EXPERIENCE -->
+<section id="experience">
   <div class="section-header">
     <span class="section-num">02</span>
+    <h2>Experience</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="exp-grid">
+
+    <!-- EXP 1 -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <p class="exp-role">Chassis Team Member</p>
+          <div class="exp-meta">
+            <span class="exp-org">Georgia Tech Motorsports — FSAE</span>
+            <span class="exp-dot"></span>
+            <span class="exp-date">Sept 2025 – Present</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-body-content">
+        <div class="exp-bullets-col">
+          <div class="exp-bullets">
+            <p class="exp-bullet">Improving structural reliability of chassis components by iterating mounting tab designs based on load conditions and FEA feedback</p>
+            <p class="exp-bullet">Designing mounting components in SolidWorks accounting for load paths, stress distribution, and manufacturability</p>
+            <p class="exp-bullet">Collaborating with chassis and manufacturing teams to integrate components into full vehicle assemblies</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXP 2 -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <p class="exp-role">Suspension Team Member</p>
+          <div class="exp-meta">
+            <span class="exp-org">HyTech Racing — FSAE</span>
+            <span class="exp-dot"></span>
+            <span class="exp-date">Sept 2024 – Apr 2025</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-body-content">
+        <div class="exp-bullets-col">
+          <div class="exp-bullets">
+            <p class="exp-bullet">Manufactured precision components using CNC lathe and manual machining, adhering to engineering drawings and tolerance requirements</p>
+            <p class="exp-bullet">Built and modified mechanical test setups for suspension system validation</p>
+            <p class="exp-bullet">Applied understanding of dynamic loading and suspension behavior to support design and testing efforts</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXP 3 -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <p class="exp-role">Captain · Mechanical & CAD Lead · Programming Lead</p>
+          <div class="exp-meta">
+            <span class="exp-org">FTC Robotics</span>
+            <span class="exp-dot"></span>
+            <span class="exp-date">2019 – 2024</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-body-content">
+        <div class="exp-bullets-col">
+          <div class="exp-bullets">
+            <p class="exp-bullet">Led design and development of multiple robotic systems using CAD, fabrication, and system integration across five competitive seasons</p>
+            <p class="exp-bullet">Mentored team members in mechanical design, prototyping, and engineering problem-solving</p>
+            <p class="exp-bullet">Presented technical designs and competition results to industry professionals at regional and state events</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXP 4 -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <p class="exp-role">B.S. Mechanical Engineering</p>
+          <div class="exp-meta">
+            <span class="exp-org">Georgia Institute of Technology</span>
+            <span class="exp-dot"></span>
+            <span class="exp-date">2021 – Dec 2027</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-body-content">
+        <div class="exp-bullets-col">
+          <div class="exp-bullets">
+            <p class="exp-bullet">Expected graduation: December 2027</p>
+            <p class="exp-bullet">Relevant coursework: Thermodynamics, Fluids, Statics, Dynamics, Material Science, Deformable Bodies, MATLAB, Circuits & Electronics, Engineering Graphics & Design</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding-top: 60px; padding-bottom: 60px;">
+  <div class="section-header">
+    <span class="section-num">03</span>
     <h2>About</h2>
     <div class="divider"></div>
   </div>
   <div class="about-grid">
     <div>
-      <p class="about-text">I'm a <strong>Mechanical Engineering student at Georgia Tech</strong> (GPA 3.92, graduating December 2027) with a background in robotics that started long before college — I was captain and mechanical/CAD lead for my FTC team from age 14, designing and building competition robots every year through high school.</p>
-      <br>
-      <p class="about-text">I thrive at the edge of design and fabrication. I care deeply about <strong>why</strong> a component is shaped a certain way, and I'm equally comfortable iterating in SolidWorks and standing at a lathe. Currently racing on <strong>two FSAE teams simultaneously</strong> and actively seeking summer 2026 internships in aerospace, robotics, or advanced manufacturing.</p>
+      <p class="about-text">Mechanical Engineering junior at Georgia Tech with a background in robotics since age 14. Equally comfortable iterating in SolidWorks and standing at a lathe. Currently on <strong>two FSAE teams</strong> and seeking summer 2026 internships in aerospace, robotics, or manufacturing.</p>
       <div class="coursework-row">
         <p class="skill-group-label" style="width:100%; margin-bottom:4px;">Relevant Coursework</p>
         <span class="course-tag">Thermodynamics</span>
@@ -598,165 +1219,6 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-header">
-    <span class="section-num">03</span>
-    <h2>Experience</h2>
-    <div class="divider"></div>
-  </div>
-  <div class="exp-grid">
-
-    <!-- EXP 1 -->
-    <div class="exp-card open">
-      <div class="exp-header" onclick="toggleExp(this)">
-        <div>
-          <p class="exp-role">Chassis Team Member</p>
-          <div class="exp-meta">
-            <span class="exp-org">Georgia Tech Motorsports — FSAE</span>
-            <span class="exp-dot"></span>
-            <span class="exp-date">Sept 2025 – Present</span>
-          </div>
-        </div>
-        <span class="exp-toggle">+</span>
-      </div>
-      <div class="exp-body">
-        <div class="exp-body-inner">
-          <div class="exp-body-content">
-            <div class="exp-bullets-col">
-              <div class="exp-bullets">
-                <p class="exp-bullet">Improving structural reliability of chassis components by iterating mounting tab designs based on load conditions and FEA feedback</p>
-                <p class="exp-bullet">Designing mounting components in SolidWorks accounting for load paths, stress distribution, and manufacturability</p>
-                <p class="exp-bullet">Collaborating with chassis and manufacturing teams to integrate components into full vehicle assemblies</p>
-              </div>
-            </div>
-            <div class="exp-media-col">
-              <!--
-                ADD IMAGES: Replace the placeholder below with:
-                <div class="slideshow" data-slideshow style="height:100%;">
-                  <div class="slideshow-track">
-                    <img src="images/gtm1.jpg" alt="Chassis work">
-                    <img src="images/gtm2.jpg" alt="FEA model">
-                  </div>
-                  <button class="slideshow-btn prev">&#8592;</button>
-                  <button class="slideshow-btn next">&#8594;</button>
-                  <div class="slideshow-dots"></div>
-                </div>
-              -->
-              <div class="slideshow-placeholder" style="border:none; background:transparent;">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Add images here</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- EXP 2 -->
-    <div class="exp-card">
-      <div class="exp-header" onclick="toggleExp(this)">
-        <div>
-          <p class="exp-role">Suspension Team Member</p>
-          <div class="exp-meta">
-            <span class="exp-org">HyTech Racing — FSAE</span>
-            <span class="exp-dot"></span>
-            <span class="exp-date">Sept 2024 – Apr 2025</span>
-          </div>
-        </div>
-        <span class="exp-toggle">+</span>
-      </div>
-      <div class="exp-body">
-        <div class="exp-body-inner">
-          <div class="exp-body-content">
-            <div class="exp-bullets-col">
-              <div class="exp-bullets">
-                <p class="exp-bullet">Manufactured precision components using CNC lathe and manual machining, adhering to engineering drawings and tolerance requirements</p>
-                <p class="exp-bullet">Built and modified mechanical test setups for suspension system validation</p>
-                <p class="exp-bullet">Applied understanding of dynamic loading and suspension behavior to support design and testing efforts</p>
-              </div>
-            </div>
-            <div class="exp-media-col">
-              <div class="slideshow-placeholder" style="border:none; background:transparent;">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Add images here</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- EXP 3 -->
-    <div class="exp-card">
-      <div class="exp-header" onclick="toggleExp(this)">
-        <div>
-          <p class="exp-role">Captain · Mechanical & CAD Lead · Programming Lead</p>
-          <div class="exp-meta">
-            <span class="exp-org">FTC Robotics</span>
-            <span class="exp-dot"></span>
-            <span class="exp-date">2019 – 2024</span>
-          </div>
-        </div>
-        <span class="exp-toggle">+</span>
-      </div>
-      <div class="exp-body">
-        <div class="exp-body-inner">
-          <div class="exp-body-content">
-            <div class="exp-bullets-col">
-              <div class="exp-bullets">
-                <p class="exp-bullet">Led design and development of multiple robotic systems using CAD, fabrication, and system integration across five competitive seasons</p>
-                <p class="exp-bullet">Mentored team members in mechanical design, prototyping, and engineering problem-solving</p>
-                <p class="exp-bullet">Presented technical designs and competition results to industry professionals at regional and state events</p>
-              </div>
-            </div>
-            <div class="exp-media-col">
-              <div class="slideshow-placeholder" style="border:none; background:transparent;">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Add images here</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- EXP 4 -->
-    <div class="exp-card">
-      <div class="exp-header" onclick="toggleExp(this)">
-        <div>
-          <p class="exp-role">B.S. Mechanical Engineering</p>
-          <div class="exp-meta">
-            <span class="exp-org">Georgia Institute of Technology</span>
-            <span class="exp-dot"></span>
-            <span class="exp-date">2021 – Dec 2027</span>
-          </div>
-        </div>
-        <span class="exp-toggle">+</span>
-      </div>
-      <div class="exp-body">
-        <div class="exp-body-inner">
-          <div class="exp-body-content">
-            <div class="exp-bullets-col">
-              <div class="exp-bullets">
-                <p class="exp-bullet">GPA: 3.92 / 4.0 — Expected graduation December 2027</p>
-                <p class="exp-bullet">Relevant coursework: Thermodynamics, Fluids, Statics, Dynamics, Material Science, Deformable Bodies, MATLAB, Circuits & Electronics, Engineering Graphics & Design</p>
-              </div>
-            </div>
-            <div class="exp-media-col">
-              <div class="slideshow-placeholder" style="border:none; background:transparent;">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Add images here</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header">
@@ -766,10 +1228,9 @@
   </div>
   <div class="contact-inner">
     <div>
-      <p class="contact-big">Let's build something <em>real.</em></p>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#71101f1e1e010104031e1918051931161c10181d5f121e1c" class="contact-link">
-          <span class="contact-link-type">Email</span><span class="__cf_email__" data-cfemail="80e1eeefeff0f0f5f2efe8e9f4e8c0e7ede1e9ecaee3efed">[email&#160;protected]</span>
+        <a href="mailto:anooppurohith@gmail.com" class="contact-link">
+          <span class="contact-link-type">Email</span>anooppurohith@gmail.com
         </a>
         <a href="tel:3219784314" class="contact-link">
           <span class="contact-link-type">Phone</span>321-978-4314
@@ -779,21 +1240,6 @@
         </a>
       </div>
     </div>
-    <div class="contact-form">
-      <div class="form-field">
-        <label>Your name</label>
-        <input type="text" placeholder="Jane Smith">
-      </div>
-      <div class="form-field">
-        <label>Your email</label>
-        <input type="email" placeholder="jane@company.com">
-      </div>
-      <div class="form-field">
-        <label>Message</label>
-        <textarea rows="5" placeholder="Tell me about the opportunity..."></textarea>
-      </div>
-      <button class="form-submit">Send message →</button>
-    </div>
   </div>
 </section>
 
@@ -802,17 +1248,79 @@
   <span class="footer-copy">Atlanta, GA <span>·</span> Expected Dec 2027</span>
 </footer>
 
+<div id="media-lightbox" class="lightbox" aria-hidden="true">
+  <button id="media-lightbox-close" class="lightbox-close" aria-label="Close full-screen image">&times;</button>
+  <img id="media-lightbox-image" alt="Expanded project media">
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function toggleExp(header) {
     var card = header.closest('.exp-card');
     card.classList.toggle('open');
   }
 
+  // Keep all slideshow videos muted, including future additions.
+  document.querySelectorAll('[data-slideshow] video').forEach(function(video) {
+    function forceMute() {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+    }
+    forceMute();
+    video.setAttribute('muted', '');
+    video.addEventListener('play', forceMute);
+    video.addEventListener('volumechange', forceMute);
+
+    function updateVideoOrientation() {
+      if (video.videoWidth && video.videoHeight) {
+        video.classList.toggle('video-portrait', video.videoHeight > video.videoWidth * 1.05);
+      }
+    }
+
+    if (video.readyState >= 1) {
+      updateVideoOrientation();
+    } else {
+      video.addEventListener('loadedmetadata', updateVideoOrientation);
+    }
+  });
+
+  var lightbox = document.getElementById('media-lightbox');
+  var lightboxImg = document.getElementById('media-lightbox-image');
+  var lightboxClose = document.getElementById('media-lightbox-close');
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.removeAttribute('src');
+  }
+
+  document.querySelectorAll('[data-slideshow] .slideshow-track img').forEach(function(img) {
+    img.addEventListener('click', function() {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt || 'Expanded project media';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+      closeLightbox();
+    }
+  });
+
   document.querySelectorAll('[data-slideshow]').forEach(function(ss) {
     var track = ss.querySelector('.slideshow-track');
-    var imgs = track ? track.querySelectorAll('img') : [];
-    var count = imgs.length;
-    if (count === 0) return;
+    var slides = track ? track.querySelectorAll('img, video') : [];
+    var count = slides.length;
+    if (count === 0) {
+      ss.classList.add('slideshow-empty');
+      return;
+    }
 
     var current = 0;
     var dotsContainer = ss.querySelector('.slideshow-dots');
@@ -845,4 +1353,9 @@
     }
 
     if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); });
-    if (nextBtn) nextBtn.addEventListener('click', function() 
+    if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); });
+    goTo(0);
+  });
+</script>
+</body>
+</html>
